@@ -1,0 +1,27 @@
+nav {
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    text-align: center;
+    padding: 0%;
+}
+
+nav ul li {
+    margin-right: 35px;
+    margin-left: 35px;
+
+    font-family: Poppins,Arial,Helvetica,sans-serif,Russo One;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: white;
+}
