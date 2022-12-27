@@ -8,15 +8,16 @@ Hello Universe is a demo application intended for learning about Palette and to 
 
 # Run App
 
+Get started with Hello Universe by choosing between two deployment approcahes; docker or a non-docker based approach.
+
 ## Docker
 
 Hello Universe is available as a Docker image.
 To run Hello Universe issue the following commands:
 
 ```shell
-
-docker pull <>
-docker run -p 8080:8080 <hello-universe>
+docker pull 
+docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.0
 ```
 
 ## Non-Docker
@@ -30,5 +31,5 @@ npm run start
 
 ## Dependencies
 
-[Count API](https://countapi.xyz/) is used to keep a global count of clicks.
-[React Spring](https://github.com/pmndrs/react-spring) is used to animate the logo.
+- [Count API](https://countapi.xyz/) is used to keep a global count of clicks.
+- [React Spring](https://github.com/pmndrs/react-spring) is used to animate the logo.
