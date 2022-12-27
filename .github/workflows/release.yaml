@@ -12,7 +12,7 @@ jobs:
     name: "Release Docker image"
     runs-on: ubuntu-latest
     outputs:
-      VERSION: ${{ steps.go.outputs.version }}
+      VERSION: ${{ steps.version.outputs.version }}
     steps:
       - id: checkout
         name: Checkout Repository
@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - id: version
-        name: determine version
+        name: Determine Release Version
         run: |
           npm install @semantic-release/exec -D
           npm install @semantic-release/changelog -D
@@ -37,9 +37,9 @@ jobs:
           source VERSION.env
           echo "::set-output name=version::$VERSION"
 
-      # - name: Set up QEMU
-      #   if: ${{ steps.version.outputs.VERSION != ''}}
-      #   uses: docker/setup-qemu-action@v2
+      - name: Set up QEMU
+        if: ${{ steps.version.outputs.VERSION != ''}}
+        uses: docker/setup-qemu-action@v2
 
       # -  name: Set up Docker Buildx
       #   if: ${{ steps.version.outputs.VERSION != ''}}
