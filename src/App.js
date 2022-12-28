@@ -1,5 +1,7 @@
 import "./App.css";
 import logo from "./img/logo.svg";
+import logoTwo from "./img/spectronaut.svg";
+import logoThree from "./img/spectronaut_two.png";
 import twitter from "./img/twitter.png";
 import linkedin from "./img/linkedin.png";
 import mastodon from "./img/mastodon.png";
@@ -8,6 +10,7 @@ import logo_text from "./img/logo_text.png";
 import { FadeIn, SpinningComponent } from "./components/Animated/Animated";
 import { useEffect, useState } from "react";
 import countapi from "countapi-js";
+import {randomLogo} from "./utilities/helpers";
 
 import Menu from "./components/Animated/Menu/Menu";
 
@@ -17,6 +20,7 @@ function App() {
   const [isLogoVisible, setIsLogoVisible] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [connected, setConnected] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     // Checks if internet is connected by attempting to load an image
@@ -33,21 +37,38 @@ function App() {
     // If not connected to the internet, fallback to using local storage for count
     // Otherwise, use Count API
     if (connected) {
-      const count = await countapi.get(countapiNamespace, countapiKey);
-      setClickCount(count?.value || clickCount);
-    } else {
+      try {
+        const count = await countapi.get(countapiNamespace, countapiKey);
+        setClickCount(count?.value || clickCount); 
+      } catch (error) {
+        setClickCount(clickCount + 1);
+        localStorage.setItem("clickCount", clickCount);
+      }
+    } 
+
+    if (!connected) {
       const count = localStorage.getItem("clickCount");
       setClickCount(parseInt(count) || 0);
+      setConnected(false);
     }
   }
 
   async function countUp() {
     if (connected) {
-      await countapi.update(countapiNamespace, countapiKey, +1);
-      await loadCount();
+      try {
+        await countapi.update(countapiNamespace, countapiKey, +1);
+        await loadCount();
+      } catch(error) {
+        console.log(error);
+      }
+
     } else {
       setClickCount(clickCount + 1);
       localStorage.setItem("clickCount", clickCount);
+    }
+
+    if (firstLoad) {
+      setFirstLoad(false);
     }
   }
 
@@ -62,7 +83,7 @@ function App() {
           <FadeIn isVisible={isLogoVisible}>
             <SpinningComponent>
               <div onClick={() => countUp()}>
-                <img src={logo} className="App-logo" alt="logo" />
+                 {randomLogo(firstLoad)}
               </div>
             </SpinningComponent>
 

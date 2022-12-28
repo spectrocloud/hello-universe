@@ -1,6 +1,6 @@
 # Hello Universe
 
-Hello Universe is a demo application intended for learning about Palette and to help showcase product features.
+Hello Universe is a demo application intended for learning about [Palette](https://docs.spectrocloud.com/introduction) and to help showcase product features.
 
 <p align="center">
 <img src="./static/img/demo.gif" alt="drawing" width="400"/>
