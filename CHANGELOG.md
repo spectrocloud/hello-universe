@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/spectrocloud/hello-universe/compare/v1.0.1...v1.0.2) (2022-12-28)
+
+
+### Bug Fixes
+
+* fixed size issue on mobile ([96d5c1a](https://github.com/spectrocloud/hello-universe/commit/96d5c1a3c52d43c634b121989b5083f8e4332d4f))
+* fixed size issue on mobile ([26fbd01](https://github.com/spectrocloud/hello-universe/commit/26fbd01f8f0cf097824f4565b87acde4d7764ff8))
+
 ## [1.0.1](https://github.com/spectrocloud/hello-universe/compare/v1.0.0...v1.0.1) (2022-12-28)
 
 
