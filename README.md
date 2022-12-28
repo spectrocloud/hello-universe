@@ -16,7 +16,7 @@ Hello Universe is available as a Docker image.
 To run Hello Universe issue the following commands:
 
 ```shell
-docker pull 
+docker pull ghcr.io/spectrocloud/hello-universe:1.0.0
 docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.0
 ```
 
