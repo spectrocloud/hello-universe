@@ -15,3 +15,5 @@ plugins:
 - - "@semantic-release/git"
   - assets:
     - CHANGELOG.md
+- - "@semantic-release/npm"
+  - npmPublish: false

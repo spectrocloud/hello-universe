@@ -1,7 +1,8 @@
 FROM node:18-alpine AS modules
 WORKDIR /app
 COPY . .
-RUN npm ci --only=production && npm run build
+RUN npm ci && npm run build && \
+adduser -u 1002 -D appuser appuser
 
 
 FROM node:18-alpine AS production
@@ -11,17 +12,21 @@ LABEL org.opencontainers.image.description "A Spectro Cloud demo application int
 WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV PORT 8080
+ENV API_URI ""
+ENV API_VERSION 1
 
-COPY --from=modules /app/node_modules ./node_modules
-COPY --from=modules /app/build ./build
-COPY --from=modules /app/package.json ./package.json
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 app
+COPY --from=modules /etc/passwd /etc/passwd
+COPY --from=modules /etc/group /etc/group
+COPY --from=modules --chown=appuser:appuser /home/appuser/ /home/appuser/
+COPY --from=modules --chown=appuser:appuser /app/node_modules ./node_modules
+COPY --from=modules --chown=appuser:appuser /app/build ./build
+COPY --from=modules --chown=appuser:appuser /app/package.json ./package.json
+COPY --from=modules --chown=appuser:appuser /app/start.sh /usr/bin/
+RUN apk update && apk upgrade && apk add --no-cache bash && \
+chmod +x /usr/bin/start.sh
 
-USER app
-
+USER appuser
 EXPOSE 8080
 
-ENV PORT 8080
-
-CMD ["npm", "run", "server-prod"]
+CMD [ "sh", "-c", "/usr/bin/start.sh" ]
