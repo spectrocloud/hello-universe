@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/spectrocloud/hello-universe/compare/v1.0.2...v1.0.3) (2023-01-05)
+
+
+### Bug Fixes
+
+* added the ability to connect to the API server through env variables ([2f028f0](https://github.com/spectrocloud/hello-universe/commit/2f028f060ef996774400444aaa9303edb5fcdca6))
+
 ## [1.0.2](https://github.com/spectrocloud/hello-universe/compare/v1.0.1...v1.0.2) (2022-12-28)
 
 
