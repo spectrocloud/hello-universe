@@ -18,10 +18,17 @@ function App() {
   const [clickCount, setClickCount] = useState(0);
   const [connected, setConnected] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
-  const API_URI = env.REACT_APP_API_URI;
-  const API_VERSION = env.REACT_APP_API_VERSION;
+  let API_URI = env.REACT_APP_API_URI;
+  let API_VERSION = env.REACT_APP_API_VERSION;
 
 
+  if (API_URI === "" || API_URI === "undefined") {
+      API_URI = "http://localhost:3000"
+  }
+
+  if (API_VERSION === "" || API_VERSION == "undefined") {
+      API_VERSION = 1
+  }
   useEffect(() => {
     // Checks if internet is connected by attempting to load an image
     const image = new Image();

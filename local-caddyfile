@@ -1,11 +1,11 @@
 http://localhost:8080 {
-    root * /app/build/
+    root * build/
 	encode gzip
     try_files {path} /index.html
     file_server
     reverse_proxy /api/v1/* http://localhost:3000
 
    log {
-        output file /var/log/caddy/caddy.log
+        output file caddy.log
     }
 }

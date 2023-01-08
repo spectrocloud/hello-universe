@@ -4,6 +4,7 @@ COPY . .
 RUN npm ci && npm run build && \
 adduser -u 1002 -D appuser appuser
 
+FROM caddy:2.6.2-alpine as caddy
 
 FROM node:18-alpine AS production
 LABEL org.opencontainers.image.source="https://github.com/spectrocloud/hello-universe"
@@ -13,7 +14,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV PORT 8080
-ENV API_URI ""
+ENV API_URI http://localhost:3000
 ENV API_VERSION 1
 
 COPY --from=modules /etc/passwd /etc/passwd
@@ -23,10 +24,15 @@ COPY --from=modules --chown=appuser:appuser /app/node_modules ./node_modules
 COPY --from=modules --chown=appuser:appuser /app/build ./build
 COPY --from=modules --chown=appuser:appuser /app/package.json ./package.json
 COPY --from=modules --chown=appuser:appuser /app/start.sh /usr/bin/
-RUN apk update && apk upgrade && apk add --no-cache bash && \
-chmod +x /usr/bin/start.sh
+COPY --from=caddy --chown=appuser:appuser /usr/bin/caddy /usr/bin/caddy
+COPY --from=modules --chown=appuser:appuser /app/Caddyfile /etc/caddy/Caddyfile
+
+RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates bash && \
+chmod +x /usr/bin/start.sh && \
+mkdir -p /var/log/caddy/ && chown -R appuser:appuser /var/log/caddy/ && \
+chmod -R 700 /var/log/caddy/
 
 USER appuser
 EXPOSE 8080
-
-CMD [ "sh", "-c", "/usr/bin/start.sh" ]
+CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION npx react-inject-env set && \
+caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"]
