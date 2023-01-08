@@ -23,12 +23,10 @@ COPY --from=modules --chown=appuser:appuser /home/appuser/ /home/appuser/
 COPY --from=modules --chown=appuser:appuser /app/node_modules ./node_modules
 COPY --from=modules --chown=appuser:appuser /app/build ./build
 COPY --from=modules --chown=appuser:appuser /app/package.json ./package.json
-COPY --from=modules --chown=appuser:appuser /app/start.sh /usr/bin/
 COPY --from=caddy --chown=appuser:appuser /usr/bin/caddy /usr/bin/caddy
 COPY --from=modules --chown=appuser:appuser /app/Caddyfile /etc/caddy/Caddyfile
 
 RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates bash && \
-chmod +x /usr/bin/start.sh && \
 mkdir -p /var/log/caddy/ && chown -R appuser:appuser /var/log/caddy/ && \
 chmod -R 700 /var/log/caddy/
 
