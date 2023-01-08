@@ -1,11 +1,18 @@
 http://localhost:8080 {
-    root * build/
+	root * build/
 	encode gzip
-    try_files {path} /index.html
-    file_server
-    reverse_proxy /api/v1/* http://localhost:3000
+	try_files {path} /index.html
+	file_server
+	reverse_proxy /api/v1/* http://localhost:3000
 
-   log {
-        output file caddy.log
-    }
+	log {
+		output file caddy.log {
+            roll_size 1gb
+            roll_keep 5
+            roll_keep_for 720h
+        }
+		format json {
+            time_format wall
+        }
+	}
 }

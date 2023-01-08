@@ -22,9 +22,14 @@ function App() {
   let API_VERSION = env.REACT_APP_API_VERSION;
 
 
-  if (API_URI === "" || API_URI === "undefined") {
+  if (API_URI === "") {
       API_URI = "http://localhost:3000"
   }
+
+  if (API_URI === "/") {
+      API_URI = ""
+  }
+
 
   if (API_VERSION === "" || API_VERSION == "undefined") {
       API_VERSION = 1
