@@ -1,0 +1,13 @@
+http://localhost:8080 {
+    root * build/
+	encode gzip
+    try_files {path} /index.html
+    file_server
+
+    #handle {
+    #    reverse_proxy api/v1/* {$API_URI}
+    #}
+
+}
+:3000
+reverse_proxy :7000
