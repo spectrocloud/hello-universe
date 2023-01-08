@@ -46,9 +46,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/${{ github.repository }}:dev
-          
+
   docker-reverse-proxy:
-    name: "Release Docker Dev image"
+    name: "Release Docker Dev Proxy image"
     runs-on: ubuntu-latest
     steps:
         - id: checkout
@@ -81,7 +81,8 @@ jobs:
         - name: Build and Push Docker Image
           uses: docker/build-push-action@v2
           with:
-            context: ./Dockerfile.Caddy
+            context: .
+            file: Dockerfile.Caddy
             platforms: linux/amd64,linux/arm64
             push: true
             tags: ghcr.io/${{ github.repository }}:dev-proxy
