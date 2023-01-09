@@ -1,15 +1,21 @@
 name: Test
 
 on:
-  push:
-    branches-ignore: [ main ]
+  pull_request:
+    types: ['synchronize', 'opened', 'reopened', 'ready_for_review']
+    branches:
+    - main
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   docker:
-    name: "Release Docker Dev image"
+    name: "Docker Dev image"
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -48,7 +54,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:dev
 
   docker-reverse-proxy:
-    name: "Release Docker Dev Proxy image"
+    name: "Docker Dev w/Proxy image"
     runs-on: ubuntu-latest
     steps:
         - id: checkout

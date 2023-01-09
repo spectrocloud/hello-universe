@@ -55,6 +55,27 @@ If you are using the Docker image then use the `-e` flag parameter.
 docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/hello-universe:1.0.4
 ```
 
+# Development
+
+Create an environment file `.env` file and add the following values:
+
+```
+REACT_APP_API_URI=http://localhost:3000
+REACT_APP_API_VERSION=1
+```
+
+The `.env` file is how you point to the local development API server. Otherwise, you will use the global API counter.
+
+
+### Development Server
+To start the local development server without a proxy use the command `make start`.
+
+### Server w/o Reverse Proxy
+To start the Caddy server without a reverse proxy use the command `make start-prod`.
+
+### Server w/o Reverse Proxy
+To start the Caddy server with a reverse proxy use the command `make start-proxy`.
+
 ## Dependencies
 
 - [Caddy](https://caddyserver.com/docs/)
