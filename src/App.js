@@ -21,14 +21,16 @@ function App() {
   let API_URI = env.REACT_APP_API_URI;
   let API_VERSION = env.REACT_APP_API_VERSION;
 
-
-  if (API_URI === "") {
-      API_URI = "http://localhost:3000"
-  }
-
+  // This is the default value for the API_URI env variable
+  // In this scenario, either the global API is used OR local storage is used
   if (API_URI === "/") {
       API_URI = ""
   }
+
+  // If no API_URI is provided, then assume the user is running the API locally
+  if (API_URI === "") {
+    API_URI = "http://localhost:3000"
+}
 
   if (API_VERSION === "" || API_VERSION == "undefined") {
       API_VERSION = 1

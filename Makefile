@@ -1,6 +1,5 @@
 
 build: 
-	@echo "Building..."
 	npm run build
 
 start:

@@ -3,12 +3,10 @@
 	encode gzip
 	try_files {path} /index.html
 	file_server
-	reverse_proxy /api/v1/* http://localhost:3000
-
 	log {
 		output file /var/log/caddy/caddy.log {
 			roll_size 1gb
-            roll_keep 5
+            roll_keep 2
             roll_keep_for 720h
 		}
 		format json {
@@ -16,3 +14,8 @@
         }
 	}
 }
+
+:3000 {
+	reverse_proxy {$API_URI}
+}
+
