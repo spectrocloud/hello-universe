@@ -14,8 +14,9 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV PORT 8080
-ENV API_URI http://localhost:3000
+ENV API_URI ""
 ENV API_VERSION 1
+ENV REVERSE_PROXY true
 
 COPY --from=modules /etc/passwd /etc/passwd
 COPY --from=modules /etc/group /etc/group
@@ -32,5 +33,5 @@ chmod -R 700 /var/log/caddy/
 
 USER appuser
 EXPOSE 8080 3000
-CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION npx react-inject-env set && \
+CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION REACT_APP_REVERSE_PROXY=$REVERSE_PROXY npx react-inject-env set && \
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"]
