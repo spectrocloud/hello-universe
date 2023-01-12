@@ -12,15 +12,27 @@ import { getCounter, postCounter } from "./utilities/requests";
 import Menu from "./components/Animated/Menu/Menu";
 
 function App() {
-  const countapiKey = "f3dceeba-1841-42cf-b76c-26e9026dc0cf";
+  const countapiKey = "f3dceeba-1841-42cf-b76c-26e9026dc0cf"; // Yes, it's an API key but it's not a secret. It's used to identify the counter. 
   const countapiNamespace = "spectrocloud.com";
   const [isLogoVisible, setIsLogoVisible] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [connected, setConnected] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
-  const API_URI = env.REACT_APP_API_URI;
-  const API_VERSION = env.REACT_APP_API_VERSION;
+  let API_URI = env.REACT_APP_API_URI;
+  let API_VERSION = env.REACT_APP_API_VERSION;
+  let REVERSE_PROXY = env.REACT_APP_REVERSE_PROXY;
+  
+  if (API_URI == "undefined") {
+      API_URI = ""
+  }
 
+  if (REVERSE_PROXY) {
+      API_URI = "http://0.0.0.0:3000"
+  }
+
+  if (API_VERSION === "" || API_VERSION == "undefined") {
+      API_VERSION = 1
+  }
 
   useEffect(() => {
     // Checks if internet is connected by attempting to load an image
@@ -34,18 +46,8 @@ function App() {
   }, [connected])
 
   async function loadCount() {
-    // If not connected to the internet, fallback to using local storage for count
-    // Otherwise, use Count API
-    if (connected && !API_URI || API_URI === "undefined") {
-      try {
-        const count = await countapi.get(countapiNamespace, countapiKey);
-        setClickCount(count?.value || clickCount); 
-      } catch (error) {
-        setClickCount(clickCount + 1);
-        localStorage.setItem("clickCount", clickCount);
-      }
-    }
-    
+
+    // If an API URI is provided, use that to get the count
     if (API_URI) {
       try {
         const databaseCount = await getCounter(API_URI, API_VERSION);
@@ -56,6 +58,20 @@ function App() {
       }
     }
 
+
+    // If connected to the internet, and no API URI is provided then use the Global Counter API.
+    // Fallback to using local storage for count if the Global Counter API is unavailable.
+    if (connected && !API_URI || API_URI === "undefined") {
+      try {
+        const count = await countapi.get(countapiNamespace, countapiKey);
+        setClickCount(count?.value || clickCount); 
+      } catch (error) {
+        setClickCount(clickCount + 1);
+        localStorage.setItem("clickCount", clickCount);
+      }
+    }
+    
+    // If not connected to the internet, and no API URI is provided then use local storage for count.
     if (!connected && !API_URI || API_URI === "undefined") {
       const count = localStorage.getItem("clickCount");
       setClickCount(parseInt(count) || 0);
@@ -64,6 +80,18 @@ function App() {
   }
 
   async function countUp() {
+
+    // If an API URI is provided, use that to update the count
+    if (API_URI) {
+      try {
+        const databaseCount = await postCounter(API_URI, API_VERSION);
+        setClickCount(databaseCount);
+      } catch (error) {
+        alert(`Error: Unable to connect to database on ${API_URI}. Please try again later. 😢`)
+      }
+    }
+
+    // If connected to the internet, and no API URI is provided then use the Global Counter API.
     if (connected && !API_URI || API_URI === "undefined") {
       try {
         await countapi.update(countapiNamespace, countapiKey, +1);
@@ -73,16 +101,7 @@ function App() {
       }
     } 
 
-    if (API_URI) {
-      try {
-        const databaseCount = await postCounter(API_URI, API_VERSION);
-        setClickCount(databaseCount);
-      } catch (error) {
-        alert(`Error: Unable to connect to database on ${API_URI}. Please try again later. 😢`)
-      }
-
-    }
-    
+    // If not connected to the internet, and no API URI is provided then use local storage for count.
     if(!connected && !API_URI || API_URI === "undefined") {
       setClickCount(clickCount + 1);
       localStorage.setItem("clickCount", clickCount);
