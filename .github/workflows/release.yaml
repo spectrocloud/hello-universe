@@ -64,16 +64,6 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:${{steps.version.outputs.VERSION}}
      
-      - name: "release"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-              npm install @semantic-release/exec -D
-              npm install @semantic-release/changelog -D
-              npm install @semantic-release/github -D
-              npm install @semantic-release/git -D
-              npx semantic-release
-
   docker-reverse-proxy:
     name: "Docker w/Proxy image"
     runs-on: ubuntu-latest
@@ -130,3 +120,25 @@ jobs:
             platforms: linux/amd64,linux/arm64
             push: true
             tags: ghcr.io/${{ github.repository }}:${{steps.version.outputs.VERSION}}-proxy
+
+  release:
+    name: "Release"
+    needs: [docker,docker-reverse-proxy]
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: "release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

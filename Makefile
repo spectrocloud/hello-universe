@@ -1,14 +1,16 @@
+.PHONY: build
 
-build: 
+build: clean
+	@echo "Building..."
 	npm run build
 
 start:
 	@echo "Starting..."
 	npm run start
 
-start-prod: clean
+start-prod: clean build
 	@echo "Starting production server"
-	npm run start-prod
+	npm run server-prod
 
 clean:
 	@echo "Cleaning..."
