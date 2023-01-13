@@ -49,12 +49,17 @@ function App() {
 
     // If an API URI is provided, use that to get the count
     if (API_URI) {
+      let count;
       try {
-        const databaseCount = await getCounter(API_URI, API_VERSION);
-        setClickCount(databaseCount);
+        count = await getCounter(API_URI, API_VERSION);
+        if (count.message) {
+          count = 0;
+          throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+        }
       } catch(error) {
-        console.log(error);
-        alert(`Error: Unable to connect to database on ${API_URI}. Please try again later. 😢`)
+        alert(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+      } finally {
+        setClickCount(count);
       }
     }
 
@@ -62,12 +67,17 @@ function App() {
     // If connected to the internet, and no API URI is provided then use the Global Counter API.
     // Fallback to using local storage for count if the Global Counter API is unavailable.
     if (connected && !API_URI || API_URI === "undefined") {
+      let count;
       try {
-        const count = await countapi.get(countapiNamespace, countapiKey);
-        setClickCount(count?.value || clickCount); 
+        count = await countapi.get(countapiNamespace, countapiKey);
+        if (count.message) {
+          count.value = 0;
+          throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+        }
       } catch (error) {
-        setClickCount(clickCount + 1);
-        localStorage.setItem("clickCount", clickCount);
+        alert(`Error: Unable to connect to the database. Please try again later. 😢`)
+      } finally {
+        setClickCount(count?.value || clickCount); 
       }
     }
     
@@ -83,21 +93,32 @@ function App() {
 
     // If an API URI is provided, use that to update the count
     if (API_URI) {
+      let count;
       try {
-        const databaseCount = await postCounter(API_URI, API_VERSION);
-        setClickCount(databaseCount);
+        count = await postCounter(API_URI, API_VERSION);
+        if (count.message) {
+          count = 0;
+         throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+        }
       } catch (error) {
-        alert(`Error: Unable to connect to database on ${API_URI}. Please try again later. 😢`)
+        alert(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+      } finally {
+        setClickCount(count);
       }
     }
 
     // If connected to the internet, and no API URI is provided then use the Global Counter API.
     if (connected && !API_URI || API_URI === "undefined") {
+      let count;
       try {
-        await countapi.update(countapiNamespace, countapiKey, +1);
+        let response = await countapi.update(countapiNamespace, countapiKey, +1);
+        if (response.message) {
+          response = 0;
+          throw new Error(`Error: Unable to connect to Global Counter API. Please try again later. 😢`)
+        }
         await loadCount();
       } catch(error) {
-        console.log(error);
+        alert(`Error: Unable to connect to Global Counter API. Please try again later. 😢`)
       }
     } 
 
@@ -105,7 +126,6 @@ function App() {
     if(!connected && !API_URI || API_URI === "undefined") {
       setClickCount(clickCount + 1);
       localStorage.setItem("clickCount", clickCount);
-
     }
 
     if (firstLoad) {
@@ -117,10 +137,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Menu />
-
         <div className="Header-items">
-          <span className="Click-counter">{`Clicked ${clickCount} times 🤖`}</span>
-
+        { API_URI ? <span className="Click-counter">{`Clicked ${clickCount} 🤖 `}</span> : <span className="Click-counter">{`Clicked ${clickCount} 🌏`}</span>}
           <FadeIn isVisible={isLogoVisible}>
             <SpinningComponent>
               <div onClick={() => countUp()}>
