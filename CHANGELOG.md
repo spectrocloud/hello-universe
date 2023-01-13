@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/spectrocloud/hello-universe/compare/v1.0.4...v1.0.5) (2023-01-13)
+
+
+### Bug Fixes
+
+* updated message for global and private counter ([0f91629](https://github.com/spectrocloud/hello-universe/commit/0f91629b8ed8d72b5309dbcc67debe5976c9d954))
+
 ## [1.0.4](https://github.com/spectrocloud/hello-universe/compare/v1.0.3...v1.0.4) (2023-01-12)
 
 
