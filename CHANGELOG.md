@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/spectrocloud/hello-universe/compare/v1.0.5...v1.0.6) (2023-01-13)
+
+
+### Bug Fixes
+
+* updated bug related to REVERSE_PROXY env var ([167f5ad](https://github.com/spectrocloud/hello-universe/commit/167f5adda058af6fbb8cb7bb3cf1e7b578fe16ea))
+
 ## [1.0.5](https://github.com/spectrocloud/hello-universe/compare/v1.0.4...v1.0.5) (2023-01-13)
 
 
