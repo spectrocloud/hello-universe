@@ -16,8 +16,8 @@ Hello Universe is available as a Docker image.
 To run Hello Universe issue the following commands:
 
 ```shell
-docker pull ghcr.io/spectrocloud/hello-universe:1.0.4
-docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.4
+docker pull ghcr.io/spectrocloud/hello-universe:1.0.5
+docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.5
 ```
 
 ## Non-Docker
@@ -54,7 +54,7 @@ API_URI=http://localhost:3000
 If you are using the Docker image then use the `-e` flag parameter.
 
 ```shell
-docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/hello-universe:1.0.4
+docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/hello-universe:1.0.5
 ```
 
 ### Reverse Proxy
