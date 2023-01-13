@@ -26,7 +26,7 @@ function App() {
       API_URI = ""
   }
 
-  if (REVERSE_PROXY) {
+  if (REVERSE_PROXY === "true") {
       API_URI = "http://0.0.0.0:3000"
   }
 
