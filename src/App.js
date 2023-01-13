@@ -69,7 +69,7 @@ function App() {
     if (connected && !API_URI || API_URI === "undefined") {
       let count;
       try {
-        const count = await countapi.get(countapiNamespace, countapiKey);
+        count = await countapi.get(countapiNamespace, countapiKey);
         if (count.message) {
           count.value = 0;
           throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
@@ -137,10 +137,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Menu />
-
         <div className="Header-items">
-          <span className="Click-counter">{`Clicked ${clickCount} times 🤖`}</span>
-
+        { API_URI ? <span className="Click-counter">{`Clicked ${clickCount} 🤖 `}</span> : <span className="Click-counter">{`Clicked ${clickCount} 🌏`}</span>}
           <FadeIn isVisible={isLogoVisible}>
             <SpinningComponent>
               <div onClick={() => countUp()}>
