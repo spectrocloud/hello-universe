@@ -16,8 +16,8 @@ Hello Universe is available as a Docker image.
 To run Hello Universe issue the following commands:
 
 ```shell
-docker pull ghcr.io/spectrocloud/hello-universe:1.0.5
-docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.5
+docker pull ghcr.io/spectrocloud/hello-universe:1.0.6
+docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.6
 ```
 
 ## Non-Docker
@@ -54,7 +54,7 @@ API_URI=http://localhost:3000
 If you are using the Docker image then use the `-e` flag parameter.
 
 ```shell
-docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/hello-universe:1.0.5
+docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/hello-universe:1.0.6
 ```
 
 ### Reverse Proxy
@@ -63,7 +63,7 @@ A Docker container with a reverse proxy for `http://0.0.0.0:3000` is available. 
 hello universe application into a Kubernetes cluster or similar architectures and need the UI to route requests internal to the hosting platform. An example of such behavior is needing to to reach a private API inside the Kubernetes cluster. **The reverse proxy expects the API to be listening on port `3000`.**
 
 ```shell
-docker run -p 8080:8080 -p 3000:3000  -e API_URI="http://myprivate.api.address.example:3000"  ghcr.io/spectrocloud/hello-universe:1.0.5-proxy
+docker run -p 8080:8080 -p 3000:3000  -e API_URI="http://myprivate.api.address.example:3000"  ghcr.io/spectrocloud/hello-universe:1.0.6-proxy
 ```
 
 # Development
