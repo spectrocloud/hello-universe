@@ -5,14 +5,19 @@ async function postCounter(url, version) {
         method: 'POST',
         redirect: 'follow'
       };
+
+      let data = ""
       
       try {
         const results = await fetch(`${url}/api/v${version}/counter`, requestOptions)
-        const data = await results.json()
-        return data?.total || 0
+        const response = await results.json()
+        data =  response?.total || 0
       } catch (error) {
+        console.log(error)
         return error
       }
+
+      return data;
 }
 
 async function getCounter(url, version) {
@@ -20,14 +25,19 @@ async function getCounter(url, version) {
         method: 'GET',
         redirect: 'follow'
       };
+    
+      let data = ""
       
       try {
         const results = await fetch(`${url}/api/v${version}/counter`, requestOptions)
-        const data = await results.json()
-        return data?.total || 0
+        const response = await results.json()
+        data =  response?.total || 0
       } catch (error) {
+        console.log(error)
         return error
       }
+
+      return data;
 }
 
 export { postCounter, getCounter };
