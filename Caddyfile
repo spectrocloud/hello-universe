@@ -1,8 +1,15 @@
 :8080 {
-	root * /app/build/
 	encode gzip
-	try_files {path} /index.html
-	file_server
+	handle_path /api/* {
+		reverse_proxy 0.0.0.0:3000
+	}
+
+	handle {
+		root * /app/build
+		try_files {path} /index.html
+		file_server	
+	}
+
 	log {
 		output file /var/log/caddy/caddy.log {
 			roll_size 1gb
@@ -13,9 +20,20 @@
             time_format wall
         }
 	}
+
 }
 
 :3000 {
 	reverse_proxy {$API_URI}
+	log {
+		output file /var/log/caddy/caddy.log {
+			roll_size 1gb
+            roll_keep 2
+            roll_keep_for 720h
+		}
+		format json {
+            time_format wall
+        }
+	}
 }
 

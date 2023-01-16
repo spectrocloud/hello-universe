@@ -32,6 +32,6 @@ mkdir -p /var/log/caddy/ && chown -R appuser:appuser /var/log/caddy/ && \
 chmod -R 700 /var/log/caddy/
 
 USER appuser
-EXPOSE 8080 3000
+EXPOSE 8080
 CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION REACT_APP_REVERSE_PROXY=$REVERSE_PROXY npx react-inject-env set && \
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"]
