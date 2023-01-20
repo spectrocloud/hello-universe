@@ -1,19 +1,24 @@
 :8080 {
-	root * build/
 	encode gzip
-	try_files {path} /index.html
-	file_server
-	header Access-Control-Allow-Origin *
-	header Access-Control-Allow-Methods *
+	handle_path /api/* {
+		reverse_proxy http://0.0.0.0:3000
+	}
+
+	handle {
+		root * build/
+		try_files {path} /index.html
+		file_server	
+	}
 
 	log {
 		output file caddy.log {
 			roll_size 1gb
-			roll_keep 5
-			roll_keep_for 720h
+            roll_keep 2
+            roll_keep_for 720h
 		}
 		format json {
-			time_format wall
-		}
+            time_format wall
+        }
 	}
+
 }
