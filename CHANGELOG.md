@@ -1,3 +1,11 @@
+## [1.0.7](https://github.com/spectrocloud/hello-universe/compare/v1.0.6...v1.0.7) (2023-01-20)
+
+
+### Bug Fixes
+
+* resolved the issue with reverse proxy not working ([174e785](https://github.com/spectrocloud/hello-universe/commit/174e78541597c5082bd01beed2f3412c209105a0))
+* updated reverse proxy configuration ([cda03ce](https://github.com/spectrocloud/hello-universe/commit/cda03ce1c9a208c1d5069b379776ae308d0fe203))
+
 ## [1.0.6](https://github.com/spectrocloud/hello-universe/compare/v1.0.5...v1.0.6) (2023-01-13)
 
 
