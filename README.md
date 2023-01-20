@@ -35,9 +35,11 @@ Hello Universe accepts the following environment variables:
 
 | Variable    | Description                                        | Default   |
 |-------------|----------------------------------------------------|-----------|
-| API_URI     | The fully qualified hostname and port of the API server, such as `http://localhost:3000`    | "" |
-| API_VERSION  | The API version number    | `1` |
-| REVERSE_PROXY| Enable to use the reverse proxy. This value is set to `true` in the proxy container image. |`false`|
+| API_URI     | The fully qualified hostname and port of the API server. In a reverse proxy setting this can be the application loadbalancer. | `""` |
+| API_VERSION  | The API version number.    | `1` |
+| SVC_URI | The URI to the service API, such as the internal  Kubernetes container hostname of the API service. |`""`|
+| TOKEN | The API authorization token. This is only used if the API is configured for authorization. |`""`|
+
 
 
 ## Connecting to API Server
@@ -59,11 +61,11 @@ docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/he
 
 ### Reverse Proxy
 
-A Docker container with a reverse proxy for `http://0.0.0.0:3000` is available. The reverse proxy is usefull for scenarios when you need to deploy the 
+A Docker container with a reverse proxy is available. The reverse proxy is usefull for scenarios when you need to deploy the 
 hello universe application into a Kubernetes cluster or similar architectures and need the UI to route requests internal to the hosting platform. An example of such behavior is needing to to reach a private API inside the Kubernetes cluster. **The reverse proxy expects the API to be listening on port `3000`.**
 
 ```shell
-docker run -p 8080:8080  -e API_URI="http://myprivate.api.address.example:3000"  ghcr.io/spectrocloud/hello-universe:1.0.6-proxy
+docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.example:3000" -e API_URI="http://myloadbalancer.example:3000"  ghcr.io/spectrocloud/hello-universe:1.0.7-proxy
 ```
 
 # Development

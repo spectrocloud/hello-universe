@@ -1,7 +1,7 @@
 :8080 {
 	encode gzip
 	handle_path /api/* {
-		reverse_proxy 0.0.0.0:3000
+		reverse_proxy http://0.0.0.0:3000
 	}
 
 	handle {
@@ -21,20 +21,4 @@
         }
 	}
 
-}
-
-
-
-:3000 {
-	reverse_proxy {$API_URI}
-	log {
-		output file caddy.log {
-			roll_size 1gb
-            roll_keep 2
-            roll_keep_for 720h
-		}
-		format json {
-            time_format wall
-        }
-	}
 }

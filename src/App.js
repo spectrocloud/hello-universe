@@ -20,14 +20,10 @@ function App() {
   const [firstLoad, setFirstLoad] = useState(true);
   let API_URI = env.REACT_APP_API_URI;
   let API_VERSION = env.REACT_APP_API_VERSION;
-  let REVERSE_PROXY = env.REACT_APP_REVERSE_PROXY;
+
   
   if (API_URI == "undefined") {
       API_URI = ""
-  }
-
-  if (REVERSE_PROXY === "true") {
-      API_URI = "http://0.0.0.0:3000"
   }
 
   if (API_VERSION === "" || API_VERSION == "undefined") {

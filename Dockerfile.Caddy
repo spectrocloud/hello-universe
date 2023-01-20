@@ -15,8 +15,9 @@ ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV PORT 8080
 ENV API_URI ""
+ENV SVC_URI ""
 ENV API_VERSION 1
-ENV REVERSE_PROXY true
+ENV TOKEN ""
 
 COPY --from=modules /etc/passwd /etc/passwd
 COPY --from=modules /etc/group /etc/group
@@ -27,11 +28,11 @@ COPY --from=modules --chown=appuser:appuser /app/package.json ./package.json
 COPY --from=caddy --chown=appuser:appuser /usr/bin/caddy /usr/bin/caddy
 COPY --from=modules --chown=appuser:appuser /app/Caddyfile /etc/caddy/Caddyfile
 
-RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates bash && \
+RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates bash jq && \
 mkdir -p /var/log/caddy/ && chown -R appuser:appuser /var/log/caddy/ && \
 chmod -R 700 /var/log/caddy/
 
 USER appuser
-EXPOSE 8080
-CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION REACT_APP_REVERSE_PROXY=$REVERSE_PROXY npx react-inject-env set && \
+EXPOSE 8080 3000
+CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION npx react-inject-env set && \
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"]
