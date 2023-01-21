@@ -1,24 +1,20 @@
-:8080 {
-	encode gzip
-	handle_path /api/* {
-		reverse_proxy http://0.0.0.0:3000
+{
+	debug
+}
+:3000 {
+	reverse_proxy /api/* {
+		header_up Authorization "Bearer {$TOKEN}"
+		to {$SVC_URI}
 	}
-
-	handle {
-		root * build/
-		try_files {path} /index.html
-		file_server	
-	}
-
+	
 	log {
 		output file caddy.log {
 			roll_size 1gb
-            roll_keep 2
-            roll_keep_for 720h
+			roll_keep 2
+			roll_keep_for 720h
 		}
 		format json {
-            time_format wall
-        }
+			time_format wall
+		}
 	}
-
 }

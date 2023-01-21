@@ -1,39 +1,41 @@
 {
-        debug
+	debug
 }
 :8080 {
-        encode gzip
-        handle_path /api/* {
-                reverse_proxy {$API_URI}
-        }
-
-        handle {
-                root * /app/build
-                try_files {path} /index.html
-                file_server
-        }
-	log {
-		output file /var/log/caddy/caddy.log {
-			roll_size 1gb
-            roll_keep 2
-            roll_keep_for 720h
-		}
-		format json {
-            time_format wall
-        }
+	encode gzip
+	handle_path /api/* {
+		reverse_proxy {$API_URI}
 	}
 
-}
-:3000 {
-   reverse_proxy {$SVC_URI}
+	handle {
+		root * /app/build
+		try_files {path} /index.html
+		file_server
+	}
 	log {
 		output file /var/log/caddy/caddy.log {
 			roll_size 1gb
-            roll_keep 2
-            roll_keep_for 720h
+			roll_keep 2
+			roll_keep_for 720h
 		}
 		format json {
-            time_format wall
-        }
+			time_format wall
+		}
+	}
+}
+:3000 {
+	reverse_proxy /api/* {
+		header_up Authorization "Bearer {$TOKEN}"
+		to {$SVC_URI}
+	}
+	log {
+		output file /var/log/caddy/caddy.log {
+			roll_size 1gb
+			roll_keep 2
+			roll_keep_for 720h
+		}
+		format json {
+			time_format wall
+		}
 	}
 }
