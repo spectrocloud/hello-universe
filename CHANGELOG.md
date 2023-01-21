@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/spectrocloud/hello-universe/compare/v1.0.7...v1.0.8) (2023-01-21)
+
+
+### Bug Fixes
+
+* added ability for reverse proxy to insert auth token in request ([0d06718](https://github.com/spectrocloud/hello-universe/commit/0d067181dd536f7e3a97d20d601078c4ce351cdb))
+
 ## [1.0.7](https://github.com/spectrocloud/hello-universe/compare/v1.0.6...v1.0.7) (2023-01-20)
 
 
