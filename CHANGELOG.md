@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/spectrocloud/hello-universe/compare/v1.0.8...v1.0.9) (2023-02-19)
+
+
+### Bug Fixes
+
+* updated Caddy version for reverse proxy image ([4da97f7](https://github.com/spectrocloud/hello-universe/commit/4da97f75ad4bc1a3775b67addbb025faeebcd1e6))
+
 ## [1.0.8](https://github.com/spectrocloud/hello-universe/compare/v1.0.7...v1.0.8) (2023-01-21)
 
 
