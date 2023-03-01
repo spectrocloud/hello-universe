@@ -20,8 +20,12 @@ function App() {
   const [firstLoad, setFirstLoad] = useState(true);
   let API_URI = env.REACT_APP_API_URI;
   let API_VERSION = env.REACT_APP_API_VERSION;
+  let TOKEN = env.REACT_APP_TOKEN;
 
-  
+  if (TOKEN == "undefined") {
+      TOKEN = ""
+  }
+
   if (API_URI == "undefined") {
       API_URI = ""
   }
@@ -47,7 +51,7 @@ function App() {
     if (API_URI) {
       let count;
       try {
-        count = await getCounter(API_URI, API_VERSION);
+        count = await getCounter(API_URI, API_VERSION, TOKEN);
         if (count.message) {
           count = 0;
           throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
@@ -91,7 +95,7 @@ function App() {
     if (API_URI) {
       let count;
       try {
-        count = await postCounter(API_URI, API_VERSION);
+        count = await postCounter(API_URI, API_VERSION, TOKEN);
         if (count.message) {
           count = 0;
          throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
