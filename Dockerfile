@@ -15,7 +15,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ENV PORT 8080
 ENV API_URI  ""
 ENV API_VERSION 1
-ENV REVERSE_PROXY false
+ENV TOKEN ""
 
 COPY --from=modules /etc/passwd /etc/passwd
 COPY --from=modules /etc/group /etc/group
@@ -28,5 +28,5 @@ RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates bash
 USER appuser
 EXPOSE 8080
 
-CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION REACT_APP_REVERSE_PROXY=$REVERSE_PROXY npx react-inject-env set && \
+CMD ["/bin/bash", "-c", "REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION REACT_APP_TOKEN=$TOKEN npx react-inject-env set && \
 npm run server-prod"]

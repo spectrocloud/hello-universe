@@ -1,9 +1,15 @@
-import { version } from "react";
+async function postCounter(url, version, token) {
 
-async function postCounter(url, version) {
+  const customerHeaders = new Headers();
+  customerHeaders.append('Authorization', `Bearer ${token}`);
+  customerHeaders.append('Content-Type', 'application/json');
+  customerHeaders.append('Accept', '*/*');
+
+
     var requestOptions = {
         method: 'POST',
-        redirect: 'follow'
+        redirect: 'follow',
+        headers: customerHeaders,
       };
 
       let data = ""
@@ -20,10 +26,18 @@ async function postCounter(url, version) {
       return data;
 }
 
-async function getCounter(url, version) {
+async function getCounter(url, version, token) {
+
+    const customerHeaders = new Headers();
+    customerHeaders.append('Authorization', `Bearer ${token}`);
+    customerHeaders.append('Content-Type', 'application/json');
+    customerHeaders.append('Accept', '*/*');
+
+
     var requestOptions = {
         method: 'GET',
-        redirect: 'follow'
+        redirect: 'follow',
+        headers: customerHeaders,
       };
     
       let data = ""
