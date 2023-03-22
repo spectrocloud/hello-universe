@@ -1,0 +1,19 @@
+:443 {
+	encode gzip
+	handle {
+		root * /app/build
+		try_files {path} /index.html
+		file_server
+	}
+	log {
+		output file /var/log/caddy/caddy.log {
+			roll_size 1gb
+			roll_keep 2
+			roll_keep_for 720h
+		}
+		format json {
+			time_format wall
+		}
+	}
+	tls /certs/mycert.crt /certs/mykey.pem
+}
