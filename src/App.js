@@ -18,10 +18,8 @@ function App() {
   const [clickCount, setClickCount] = useState(0);
   const [connected, setConnected] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
-  // let API_URI = env.REACT_APP_API_URI;
-  let API_URI="http://0.0.0.0:3000";
-  // let API_VERSION = env.REACT_APP_API_VERSION;
-  let API_VERSION = 1;
+  let API_URI = env.REACT_APP_API_URI;
+  let API_VERSION = env.REACT_APP_API_VERSION;
   let TOKEN = env.REACT_APP_TOKEN;
 
   if (TOKEN == "undefined") {
