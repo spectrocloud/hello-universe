@@ -18,8 +18,10 @@ function App() {
   const [clickCount, setClickCount] = useState(0);
   const [connected, setConnected] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
-  let API_URI = env.REACT_APP_API_URI;
-  let API_VERSION = env.REACT_APP_API_VERSION;
+  // let API_URI = env.REACT_APP_API_URI;
+  let API_URI="http://0.0.0.0:3000";
+  // let API_VERSION = env.REACT_APP_API_VERSION;
+  let API_VERSION = 1;
   let TOKEN = env.REACT_APP_TOKEN;
 
   if (TOKEN == "undefined") {
@@ -27,7 +29,7 @@ function App() {
   }
 
   if (API_URI == "undefined") {
-      API_URI = ""
+      API_URI = ""      
   }
 
   if (API_VERSION === "" || API_VERSION == "undefined") {
@@ -47,6 +49,7 @@ function App() {
 
   async function loadCount() {
 
+    // alert(`API_URI is ${API_URI} and API_VERSION is ${API_VERSION}.`)
     // If an API URI is provided, use that to get the count
     if (API_URI) {
       let count;
@@ -54,10 +57,10 @@ function App() {
         count = await getCounter(API_URI, API_VERSION, TOKEN);
         if (count.message) {
           count = 0;
-          throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+          throw new Error()
         }
       } catch(error) {
-        alert(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+        alert(`Error: The API_URI is ${API_URI}, yet could not fetch the data from the API_URI. The data returned is ${count} 😢`)
       } finally {
         setClickCount(count);
       }
@@ -72,10 +75,10 @@ function App() {
         count = await countapi.get(countapiNamespace, countapiKey);
         if (count.message) {
           count.value = 0;
-          throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+          throw new Error()
         }
       } catch (error) {
-        alert(`Error: Unable to connect to the database. Please try again later. 😢`)
+        alert(`Error: Unable to connect to the database because either the API_URI is undefined or not available. The API_URI is ${API_URI} 😢`)
       } finally {
         setClickCount(count?.value || clickCount); 
       }
@@ -98,7 +101,7 @@ function App() {
         count = await postCounter(API_URI, API_VERSION, TOKEN);
         if (count.message) {
           count = 0;
-         throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
+         throw new Error()
         }
       } catch (error) {
         alert(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
@@ -114,7 +117,7 @@ function App() {
         let response = await countapi.update(countapiNamespace, countapiKey, +1);
         if (response.message) {
           response = 0;
-          throw new Error(`Error: Unable to connect to Global Counter API. Please try again later. 😢`)
+          throw new Error()
         }
         await loadCount();
       } catch(error) {

@@ -32,6 +32,8 @@ async function getCounter(url, version, token) {
     customerHeaders.append('Authorization', `Bearer ${token}`);
     customerHeaders.append('Content-Type', 'application/json');
     customerHeaders.append('Accept', '*/*');
+    customerHeaders.append("Access-Control-Allow-Origin", "*");
+    customerHeaders.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 
     var requestOptions = {
@@ -47,6 +49,7 @@ async function getCounter(url, version, token) {
         const response = await results.json()
         data =  response?.total || 0
       } catch (error) {
+        alert(`Error: Could not fetch the data from the API_URI. Error thrown during the fetch() call in the getCounter() method definition. ${error}`)
         console.log(error)
         return error
       }
