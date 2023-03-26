@@ -1,0 +1,40 @@
+version: "3.8"
+
+networks:
+  hello-universe-network:
+    driver: bridge
+
+services:
+  db:
+    image: ghcr.io/spectrocloud/hello-universe-db:1.0.1
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "postgres", "-d", "counter", "-h", "localhost"]
+      interval: 3s
+      timeout: 10s
+      retries: 3
+      start_period: 80s 
+    networks:
+      hello-universe-network:
+
+  api:
+    depends_on:
+      db:
+        condition: service_healthy
+    image: ghcr.io/spectrocloud/hello-universe-api:1.0.9
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_NAME: "counter"
+      DB_USER: "postgres"
+      DB_PASSWORD: "password"
+      DB_ENCRYPTION: disable
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    networks:
+      hello-universe-network:

@@ -70,6 +70,7 @@ docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.e
 
 # Development
 
+
 Create an environment file `.env` file and add the following values:
 
 ```
@@ -79,6 +80,26 @@ REACT_APP_API_VERSION=1
 
 The `.env` file is how you point to the local development API server. Otherwise, you will use the global API counter.
 
+
+Use the [`docker-compose.yml`](./docker-compose.yml) to start the required services.
+
+```shell
+make start-services
+```
+
+
+Next, start the local development server
+
+```shell
+make start
+```
+
+
+To stop the docker containers, use the following command.
+
+```shell
+ make stop-services
+```
 
 ## Clean
 To remove the build folder use the command `make clean`

@@ -19,3 +19,11 @@ clean:
 start-proxy: clean build
 	@echo "Starting reverse proxy..."
 	caddy run --config local-caddyfile --adapter caddyfile
+
+start-services:
+	@echo "Starting services..."
+	docker compose up --detach
+
+stop-services:
+	@echo "Stopping services..."
+	docker compose down
