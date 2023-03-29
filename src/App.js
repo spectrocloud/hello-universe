@@ -176,7 +176,7 @@ function App() {
           </a>
         </div>
         <span className="Footer-rights">
-          © 2022 Spectro Cloud®. All rights reserved.
+          © 2023 Spectro Cloud®. All rights reserved.
         </span>
       </footer>
     </div>
