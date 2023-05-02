@@ -16,7 +16,7 @@ services:
       interval: 3s
       timeout: 10s
       retries: 3
-      start_period: 80s 
+      start_period: 10s 
     networks:
       hello-universe-network:
 
