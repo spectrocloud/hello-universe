@@ -8,7 +8,7 @@ Hello Universe is a demo application intended for learning about [Palette](https
 
 # Run App
 
-Get started with Hello Universe by choosing between two deployment approcahes; docker or a non-docker based approach.
+Get started with Hello Universe by choosing between two deployment approaches; docker or a non-docker-based approach.
 
 ## Docker
 
@@ -16,8 +16,8 @@ Hello Universe is available as a Docker image.
 To run Hello Universe issue the following commands:
 
 ```shell
-docker pull ghcr.io/spectrocloud/hello-universe:1.0.10
-docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.10
+docker pull ghcr.io/spectrocloud/hello-universe:1.0.12
+docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.0.12
 ```
 
 ## Non-Docker

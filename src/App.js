@@ -43,7 +43,7 @@ function App() {
 
     setIsLogoVisible(true);
     loadCount();
-  }, [connected])
+  }, [])
 
   async function loadCount() {
 
@@ -63,33 +63,17 @@ function App() {
       }
     }
 
-
-    // If connected to the internet, and no API URI is provided then use the Global Counter API.
-    // Fallback to using local storage for count if the Global Counter API is unavailable.
-    if (connected && !API_URI || API_URI === "undefined") {
-      let count;
-      try {
-        count = await countapi.get(countapiNamespace, countapiKey);
-        if (count.message) {
-          count.value = 0;
-          throw new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
-        }
-      } catch (error) {
-        alert(`Error: Unable to connect to the database. Please try again later. 😢`)
-      } finally {
-        setClickCount(count?.value || clickCount); 
-      }
-    }
     
     // If not connected to the internet, and no API URI is provided then use local storage for count.
-    if (!connected && !API_URI || API_URI === "undefined") {
+    if (API_URI == "" || API_URI === "undefined") {
       const count = localStorage.getItem("clickCount");
       setClickCount(parseInt(count) || 0);
-      setConnected(false);
     }
   }
 
   async function countUp() {
+
+    console.log("HERE")
 
     // If an API URI is provided, use that to update the count
     if (API_URI) {
@@ -107,23 +91,8 @@ function App() {
       }
     }
 
-    // If connected to the internet, and no API URI is provided then use the Global Counter API.
-    if (connected && !API_URI || API_URI === "undefined") {
-      let count;
-      try {
-        let response = await countapi.update(countapiNamespace, countapiKey, +1);
-        if (response.message) {
-          response = 0;
-          throw new Error(`Error: Unable to connect to Global Counter API. Please try again later. 😢`)
-        }
-        await loadCount();
-      } catch(error) {
-        alert(`Error: Unable to connect to Global Counter API. Please try again later. 😢`)
-      }
-    } 
-
     // If not connected to the internet, and no API URI is provided then use local storage for count.
-    if(!connected && !API_URI || API_URI === "undefined") {
+    if(API_URI == "" || API_URI === "undefined") {
       setClickCount(clickCount + 1);
       localStorage.setItem("clickCount", clickCount);
     }
@@ -176,7 +145,7 @@ function App() {
           </a>
         </div>
         <span className="Footer-rights">
-          © 2022 Spectro Cloud®. All rights reserved.
+          © 2023 Spectro Cloud®. All rights reserved.
         </span>
       </footer>
     </div>
