@@ -2,10 +2,11 @@ import logo from "../img/logo.svg";
 import logoOne from "../img/spectronaut.svg";
 import logoTwo from "../img/spectronaut_two.png";
 import logoThree from "../img/spectronaut_balloons.png";
+import logoFour from "../img/spectromate.png";
 
 
 function randomLogo(firstLoad) {
-    const logos = [logo, logoOne, logoTwo, logoThree];
+    const logos = [logo, logoOne, logoTwo, logoThree, logoFour];
     const randomIndex = Math.floor(Math.random() * logos.length);
 
 
