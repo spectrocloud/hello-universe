@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/spectrocloud/hello-universe/compare/v1.0.11...v1.0.12) (2023-05-02)
+
+
+### Bug Fixes
+
+* added spectromate and removed xyz counter due to abandonment ([f99b146](https://github.com/spectrocloud/hello-universe/commit/f99b1468acb59d1d21e67405d26c7a1bf6d98b34))
+
 ## [1.0.11](https://github.com/spectrocloud/hello-universe/compare/v1.0.10...v1.0.11) (2023-03-22)
 
 
