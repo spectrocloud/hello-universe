@@ -78,7 +78,7 @@ REACT_APP_API_URI=http://localhost:3000
 REACT_APP_API_VERSION=1
 ```
 
-The `.env` file is how you point to the local development API server.
+The `.env` file is how you point to the local development API server. Otherwise, local browser storage is used.
 
 
 Use the [`docker-compose.yml`](./docker-compose.yml) to start the required services.
