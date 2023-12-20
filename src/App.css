@@ -39,9 +39,17 @@ html {
   color: #61dafb;
 }
 
-.Click-counter {
+.Click-header {
   font-family: Poppins,Arial,Helvetica,sans-serif,Russo One;
   margin-bottom: 5%;
+}
+
+.Click-counter {
+  margin-bottom: 5%;
+}
+
+.Server-status {
+  font-size: calc(10px + 1vmin);
 }
 
 .App-footer {
