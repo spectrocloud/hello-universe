@@ -78,7 +78,7 @@ REACT_APP_API_URI=http://localhost:3000
 REACT_APP_API_VERSION=1
 ```
 
-The `.env` file is how you point to the local development API server. Otherwise, you will use the global API counter.
+The `.env` file is how you point to the local development API server.
 
 
 Use the [`docker-compose.yml`](./docker-compose.yml) to start the required services.
@@ -118,5 +118,4 @@ To start the Caddy server with a reverse proxy use the command `make start-proxy
 ## Dependencies
 
 - [Caddy](https://caddyserver.com/docs/)
-- [Count API](https://countapi.xyz/) is used to keep a global count of clicks.
 - [React Spring](https://github.com/pmndrs/react-spring) is used to animate the logo.
