@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/spectrocloud/hello-universe/compare/v1.0.12...v1.1.0) (2023-12-20)
+
+
+### Features
+
+* update landing page with API server status DOC-934 ([702d384](https://github.com/spectrocloud/hello-universe/commit/702d384bd3e094c2c1d3652a4a47ba0eaf068a53))
+
 ## [1.0.12](https://github.com/spectrocloud/hello-universe/compare/v1.0.11...v1.0.12) (2023-05-02)
 
 
