@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/spectrocloud/hello-universe/compare/v1.1.0...v1.1.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* added image signing DOC-962 ([a9b33e3](https://github.com/spectrocloud/hello-universe/commit/a9b33e31df87a42698b531909acb2962996ebe04))
+* DOC-962 merge pull request [#17](https://github.com/spectrocloud/hello-universe/issues/17) from spectrocloud/image-signing ([e5c2912](https://github.com/spectrocloud/hello-universe/commit/e5c29125589d32672b490e765500fec13c018d3b))
+
 # [1.1.0](https://github.com/spectrocloud/hello-universe/compare/v1.0.12...v1.1.0) (2023-12-20)
 
 
