@@ -34,7 +34,9 @@ HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorizatio
 
   # Set API_URI only if QUERY_K8S_API is not empty
   echo "Setting API_URI to ${HELLO_UNIVERSE_SERVICE}:3000"
-  export API_URI=$HELLO_UNIVERSE_SERVICE:$PORT
+  export API_URI=$HELLO_UNIVERSE_SERVICE:3000
+  echo "export API_URI=${HELLO_UNIVERSE_SERVICE}:3000" > /app/.env
+  
 
 
   echo "Hello Universe service IP: ${HELLO_UNIVERSE_SERVICE}:3000"

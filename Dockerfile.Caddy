@@ -34,9 +34,9 @@ COPY --from=modules --chown=appuser:appuser /app/scripts/service-ip.sh /app/serv
 
 RUN apk update && apk upgrade && apk add --no-cache curl ca-certificates bash jq && \
 mkdir -p /var/log/caddy/ && chown -R appuser:appuser /var/log/caddy/ && \
-chmod -R 700 /var/log/caddy/
+chmod -R 700 /var/log/caddy/ && touch /app/.env && chown appuser:appuser /app/.env
 
 USER appuser
 EXPOSE 8080 3000
-CMD ["/bin/bash", "-c", "/app/service-ip.sh && REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION npx react-inject-env set && \
+CMD ["/bin/bash", "-c", "/app/service-ip.sh && source /app/.env && REACT_APP_API_URI=$API_URI REACT_APP_API_VERSION=$API_VERSION npx react-inject-env set && \
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"]
