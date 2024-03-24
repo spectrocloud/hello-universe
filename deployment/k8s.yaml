@@ -253,8 +253,8 @@ spec:
             #   capabilities:
             #     drop:
             #       - ALL
-            seccompProfile:
-              type: "RuntimeDefault"
+            # seccompProfile:
+            #   type: "RuntimeDefault"
           livenessProbe:
             httpGet:
               path: /
