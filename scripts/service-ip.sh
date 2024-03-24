@@ -3,6 +3,7 @@
 # This script is used to query the Kubernetes API for the hostname of the hello-universe service
 # and set the API_URI environment variable to the service IP.
 # The script is only executed if the QUERY_K8S_API environment variable is set.
+# Inspired by https://kubernetes.io/docs/tasks/run-application/access-api-from-pod/
 #########################################
 
 if [ -n "$QUERY_K8S_API" ]; then
@@ -35,7 +36,7 @@ HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorizatio
   # Set API_URI only if QUERY_K8S_API is not empty
   echo "Setting API_URI to ${HELLO_UNIVERSE_SERVICE}:3000"
   export API_URI=$HELLO_UNIVERSE_SERVICE:3000
-  echo "export API_URI=${HELLO_UNIVERSE_SERVICE}:3000" > /app/.env
+  echo "export API_URI=http://${HELLO_UNIVERSE_SERVICE}:3000" > /app/.env
   
 
 

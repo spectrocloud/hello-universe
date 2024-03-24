@@ -175,13 +175,13 @@ spec:
             httpGet:
               path: /api/v1/health
               port: 3000
-            initialDelaySeconds: 20
+            initialDelaySeconds: 15
             periodSeconds: 3
           readinessProbe:
             httpGet:
               path: /api/v1/health
               port: 3000
-            initialDelaySeconds: 15
+            initialDelaySeconds: 10
             periodSeconds: 3
 ---
 apiVersion: v1
@@ -221,7 +221,8 @@ spec:
             ["/bin/sh", "-c", "echo 'sleeping for 30 seconds' && sleep 30"]
       containers:
         - name: ui
-          image: ghcr.io/spectrocloud/hello-universe:1.1.0-proxy
+          image: ghcr.io/spectrocloud/hello-universe:1.1.2-proxy
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
               name: ui
@@ -246,23 +247,23 @@ spec:
             requests:
               memory: "500Mi"
               cpu: "500m"
-          # securityContext:
-          #   allowPrivilegeEscalation: false
-          #   runAsNonRoot: true
-          #   capabilities:
-          #     drop:
-          #       - ALL
-          #   seccompProfile:
-          #     type: "RuntimeDefault"
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 80
-          #   initialDelaySeconds: 10
-          #   periodSeconds: 3
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 80
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 3
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   runAsNonRoot: true
+            #   capabilities:
+            #     drop:
+            #       - ALL
+            seccompProfile:
+              type: "RuntimeDefault"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 3

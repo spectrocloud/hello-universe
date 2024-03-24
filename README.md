@@ -66,6 +66,15 @@ hello universe application into a Kubernetes cluster or similar architectures an
 docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.example:3000" -e API_URI="http://myloadbalancer.example:3000"  ghcr.io/spectrocloud/hello-universe:1.1.0-proxy
 ```
 
+#### Reverse Proxy Environment Variables
+
+| Variable        | Description                                                                                                                                                                             | Default |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `SVC_URI`       | The URI to the service API, such as the internal Kubernetes container hostname of the API service.                                                                                      | `""`    |
+| `API_URI`       | The fully qualified hostname and port of the API server. In a reverse proxy setting, set this to the service loadbalancer. If `QUERY_K8S_API` set to `true`, leve this parameter empty. | `""`    |
+| `TOKEN`         | The API authorization token. This is only used if the API is configured for authorization.                                                                                              | `""`    |
+| `QUERY_K8S_API` | Set to `true` to query the Kubernetes API for the service hostname. This is useful when the service is deployed in a Kubernetes cluster.                                                | `false` |
+
 ## Image Verification
 
 We sign our images through [Cosign](https://docs.sigstore.dev/signing/quickstart/). Review the [Image Verification](./docs/image-verification.md) page to learn more.
