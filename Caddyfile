@@ -24,8 +24,9 @@
 	}
 }
 :3000 {
-	reverse_proxy /api/* {
-		header_up Authorization "Bearer {$TOKEN}"
+	reverse_proxy /api/* { 
+    # Uncomment the following line to always inject the Authorization header with the token
+		# header_up Authorization "Bearer {$TOKEN}"
 		to {$SVC_URI}
 	}
 	log {

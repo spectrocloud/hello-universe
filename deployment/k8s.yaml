@@ -225,7 +225,9 @@ spec:
                   name: auth-token
                   key: auth-token
             - name: API_URI
-              value: "" # Leave empty and set QUERY_K8S_API to true when in a Kubernetes cluster
+              # Leave empty and set QUERY_K8S_API to true to leverage a single loadbalancer.
+              # Otherwise, set to the API service URL and set QUERY_K8S_API to false
+              value: ""
             - name: SVC_URI
               value: "api.hello-universe.svc.cluster.local:3000"
             - name: API_VERSION

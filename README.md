@@ -77,9 +77,9 @@ docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.e
 
 #### Reverse Proxy with Kubernetes
 
-To deploy the Hello Universe application into a Kubernetes cluster, use the deployment manifest in `deployments/hello-universe.yaml`
+To deploy the Hello Universe application into a Kubernetes cluster, use the deployment manifest in `deployments/hello-universe.yaml`. Ensure you provide values and update all placeholders in the manifest with the value `<REPLACE_ME>`. The values must be in base64 format.
 
-When deploying the Hello Universe application into a Kubernetes cluster, set the `QUERY_K8S_API` environment variable to `true` and set the `API_URI` environment variable to an empty string.
+When deploying the Hello Universe application into a Kubernetes cluster, set the `QUERY_K8S_API` environment variable to `true` and set the `API_URI` environment variable to an empty string. This will result in the reverse proxy forwarding API requests to API service. Only a single loadbalancer is used in the Kubernetes deployment. If authorization is enabled, provide the `auth-token` kubernetes secret with the API authorization token value. Otherwise, API will fail to authorize requests.
 
 > [!NOTE]
 > The `QUERY_K8S_API` environment variable is only used when deploying the Hello Universe application into a Kubernetes cluster. Enabling this environment variable will query the Kubernetes API for the service hostname. You can review the script in the `scripts/service-ip.sh`.
@@ -89,6 +89,11 @@ When deploying the Hello Universe application into a Kubernetes cluster, set the
 Inside the Hello Universe container, [Caddy](https://caddyserver.com/) is used as a reverse proxy to route requests to the API server. The API server is expected to be listening on port `3000`.
 
 If the Hello Universe API is enabled for authorization, provide the `TOKEN` environment variable with the API authorization token. The default anonymous token is `"931A3B02-8DCC-543F-A1B2-69423D1A0B94"`. The reverse proxy will include the token when forwarding requests to the API server.
+
+> ![TIP]
+> If you want to automatically inject the authorization token into the reverse proxy for all API requests. Uncomment the following line in the Caddyfile.
+> `header_up Authorization "Bearer {$TOKEN}"` on line 29. You can find the Caddyfile configuration in **/etc/caddy/**.
+> Issue the command `caddy reload --config /etc/caddy/Caddyfile` to apply the changes.
 
 ## Image Verification
 
