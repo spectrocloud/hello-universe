@@ -4,6 +4,7 @@
 # and set the API_URI environment variable to the service IP.
 # The script is only executed if the QUERY_K8S_API environment variable is set.
 # Inspired by https://kubernetes.io/docs/tasks/run-application/access-api-from-pod/
+# API reference: https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceStatus
 #########################################
 
 if [ -n "$QUERY_K8S_API" ]; then
@@ -28,9 +29,14 @@ echo ""
 
 HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/hello-universe/services/ui | jq -r '.status.loadBalancer.ingress[0].hostname')
 
-  if [ -z "$HELLO_UNIVERSE_SERVICE" ]; then
-    echo "Failed to get service IP for hello-universe service"
-    exit 1
+  if [ -z "$HELLO_UNIVERSE_SERVICE" ] || [ "$HELLO_UNIVERSE_SERVICE" = "null" ]; then
+    echo "HELLO_UNIVERSE_SERVICE is empty or null. Querying service IP using alternative method."
+    HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/hello-universe/services/ui | jq -r '.status.loadBalancer.ingress[0].ip')
+
+    if [ -z "$HELLO_UNIVERSE_SERVICE" ]; then
+      echo "Failed to get service IP for hello-universe service"
+      exit 1
+    fi
   fi
 
   # Set API_URI only if QUERY_K8S_API is not empty
