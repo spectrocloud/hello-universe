@@ -75,6 +75,15 @@ docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.e
 | `TOKEN`         | The API authorization token. This is only used if the API is configured for authorization.                                                                                              | `""`    |
 | `QUERY_K8S_API` | Set to `true` to query the Kubernetes API for the service hostname. This is useful when the service is deployed in a Kubernetes cluster.                                                | `false` |
 
+#### Reverse Proxy with Kubernetes
+
+To deploy the Hello Universe application into a Kubernetes cluster, use the deployment manifest in `deployments/hello-universe.yaml`
+
+When deploying the Hello Universe application into a Kubernetes cluster, set the `QUERY_K8S_API` environment variable to `true` and set the `API_URI` environment variable to an empty string.
+
+> [!NOTE]
+> The `QUERY_K8S_API` environment variable is only used when deploying the Hello Universe application into a Kubernetes cluster. Enabling this environment variable will query the Kubernetes API for the service hostname. You can review the script in the `scripts/service-ip.sh`.
+
 ## Image Verification
 
 We sign our images through [Cosign](https://docs.sigstore.dev/signing/quickstart/). Review the [Image Verification](./docs/image-verification.md) page to learn more.

@@ -6,17 +6,27 @@ networks:
 
 services:
   db:
-    image: ghcr.io/spectrocloud/hello-universe-db:1.0.1
+    image: ghcr.io/spectrocloud/hello-universe-db:1.0.2
     ports:
       - "5432:5432"
     expose:
       - "5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-U", "postgres", "-d", "counter", "-h", "localhost"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready",
+          "-U",
+          "postgres",
+          "-d",
+          "counter",
+          "-h",
+          "localhost",
+        ]
       interval: 3s
       timeout: 10s
       retries: 3
-      start_period: 10s 
+      start_period: 10s
     networks:
       hello-universe-network:
 
@@ -24,7 +34,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    image: ghcr.io/spectrocloud/hello-universe-api:1.0.9
+    image: ghcr.io/spectrocloud/hello-universe-api:1.0.12
     environment:
       PORT: 3000
       DB_HOST: db

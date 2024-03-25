@@ -38,8 +38,6 @@ HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorizatio
   export API_URI=$HELLO_UNIVERSE_SERVICE:3000
   echo "export API_URI=http://${HELLO_UNIVERSE_SERVICE}:3000" > /app/.env
   
-
-
   echo "Hello Universe service IP: ${HELLO_UNIVERSE_SERVICE}:3000"
 
 else

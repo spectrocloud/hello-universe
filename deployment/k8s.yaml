@@ -132,7 +132,7 @@ spec:
       serviceAccountName: hello-universe-role
       containers:
         - name: api
-          image: ghcr.io/spectrocloud/hello-universe-api:1.0.11
+          image: ghcr.io/spectrocloud/hello-universe-api:1.0.12
           ports:
             - containerPort: 3000
               name: api
@@ -155,7 +155,7 @@ spec:
             - name: DB_INIT
               value: "false"
             - name: AUTHORIZATION
-              value: "false"
+              value: "true"
           resources:
             limits:
               memory: "500Mi"
@@ -163,25 +163,17 @@ spec:
             requests:
               memory: "500Mi"
               cpu: "500m"
-          # securityContext:
-          #   allowPrivilegeEscalation: false
-          #   runAsNonRoot: true
-          #   capabilities:
-          #     drop:
-          #       - ALL
-          #   seccompProfile:
-          #     type: "RuntimeDefault"
           livenessProbe:
             httpGet:
               path: /api/v1/health
               port: 3000
-            initialDelaySeconds: 15
+            initialDelaySeconds: 35
             periodSeconds: 3
           readinessProbe:
             httpGet:
               path: /api/v1/health
               port: 3000
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 3
 ---
 apiVersion: v1
@@ -247,23 +239,15 @@ spec:
             requests:
               memory: "500Mi"
               cpu: "500m"
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   runAsNonRoot: true
-            #   capabilities:
-            #     drop:
-            #       - ALL
-            # seccompProfile:
-            #   type: "RuntimeDefault"
           livenessProbe:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 20
+            initialDelaySeconds: 40
             periodSeconds: 3
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 15
+            initialDelaySeconds: 35
             periodSeconds: 3
