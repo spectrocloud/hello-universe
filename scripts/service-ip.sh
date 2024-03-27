@@ -27,11 +27,11 @@ CACERT=${SERVICEACCOUNT}/ca.crt
 echo "Acquiring service IP for hello-universe service"
 echo ""
 
-HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/hello-universe/services/ui | jq -r '.status.loadBalancer.ingress[0].hostname')
+HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/${NAMESPACE}/services/ui | jq -r '.status.loadBalancer.ingress[0].hostname')
 
   if [ -z "$HELLO_UNIVERSE_SERVICE" ] || [ "$HELLO_UNIVERSE_SERVICE" = "null" ]; then
     echo "HELLO_UNIVERSE_SERVICE is empty or null. Querying service IP using alternative method."
-    HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/hello-universe/services/ui | jq -r '.status.loadBalancer.ingress[0].ip')
+    HELLO_UNIVERSE_SERVICE=$(curl --silent --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/${NAMESPACE}/services/ui | jq -r '.status.loadBalancer.ingress[0].ip')
 
     if [ -z "$HELLO_UNIVERSE_SERVICE" ]; then
       echo "Failed to get service IP for hello-universe service"
