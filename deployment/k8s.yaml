@@ -60,7 +60,7 @@ metadata:
   namespace: hello-universe
 type: Opaque
 data:
-  db-password: <REPLACE_ME> # Replace with your own base64 encoded Slack signing secret
+  db-password: <REPLACE_ME> # Replace with your own base64 encoded secret
 ---
 apiVersion: v1
 kind: Secret
@@ -69,7 +69,7 @@ metadata:
   namespace: hello-universe
 type: Opaque
 data:
-  auth-token: <REPLACE_ME> # Replace with your own base64 encoded Slack signing secret
+  auth-token: <REPLACE_ME> # Replace with your own base64 encoded secret
 ---
 apiVersion: apps/v1
 kind: Deployment
