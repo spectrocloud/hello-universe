@@ -66,6 +66,88 @@ hello universe application into a Kubernetes cluster or similar architectures an
 docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.example:3000" -e API_URI="http://myloadbalancer.example:3000"  ghcr.io/spectrocloud/hello-universe:1.1.0-proxy
 ```
 
+#### Reverse Proxy Environment Variables
+
+| Variable        | Description                                                                                                                                                                             | Default |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `SVC_URI`       | The URI to the service API, such as the internal Kubernetes container hostname of the API service.                                                                                      | `""`    |
+| `API_URI`       | The fully qualified hostname and port of the API server. In a reverse proxy setting, set this to the service loadbalancer. If `QUERY_K8S_API` set to `true`, leve this parameter empty. | `""`    |
+| `TOKEN`         | The API authorization token. This is only used if the API is configured for authorization.                                                                                              | `""`    |
+| `QUERY_K8S_API` | Set to `true` to query the Kubernetes API for the service hostname. This is useful when the service is deployed in a Kubernetes cluster.                                                | `false` |
+
+#### Reverse Proxy with Kubernetes
+
+To deploy the Hello Universe application into a Kubernetes cluster, use the deployment manifest in `deployments/k8s.yaml`. Ensure you provide values and update all placeholders in the manifest with the value `<REPLACE_ME>`. The values must be in base64 format.
+
+In a Kubernetes environment, you can use two methods to deploy the Hello Universe application:
+
+1. Use a single load balancer for the UI and API services.
+2. Use separate load balancers for the UI and API services.
+
+##### Single Load Balancer
+
+When deploying the Hello Universe application into a Kubernetes cluster, set the `QUERY_K8S_API` environment variable to `true` and set the `API_URI` environment variable to an empty string. This will result in the reverse proxy forwarding API requests to API service. Only a single load balancer is used in this deployment pattern. If authorization is enabled, provide the `auth-token` Kubernetes secret with the API authorization token value. Otherwise, API will fail to authorize requests.
+
+> [!NOTE]
+> The `QUERY_K8S_API` environment variable is only used when deploying the Hello Universe application into a Kubernetes cluster. Enabling this environment variable will query the Kubernetes API for the service hostname. You can review the script in the `scripts/service-ip.sh`.
+
+![K8s diagram](./static/img/k8s-diagram.png)
+
+Inside the Hello Universe container, [Caddy](https://caddyserver.com/) is used as a reverse proxy to route requests to the API server. The API server is expected to be listening on port `3000`.
+
+If the Hello Universe API is enabled for authorization, provide the `TOKEN` environment variable with the API authorization token. The default anonymous token is `"931A3B02-8DCC-543F-A1B2-69423D1A0B94"`. The reverse proxy will include the token when forwarding requests to the API server.
+
+> ![TIP]
+> If you want to automatically inject the authorization token into the reverse proxy for all API requests, uncomment line 29 in the Caddyfile under **/etc/caddy/**.
+> `header_up Authorization "Bearer {$TOKEN}"`
+> Issue the command `caddy reload --config /etc/caddy/Caddyfile` to apply the changes.
+
+##### Separate Load Balancers
+
+> ![WARNING]
+>
+> This deployment pattern will not work in single deployment. You need to deploy the API and UI services separately due to the dependency on the API service. Use the signle deployment pattern if you want to deploy the services together.
+
+To use separate load balancers for the UI and API services, you need to make the following changes to the Kubernetes deployment manifest. Change the API service type to `LoadBalancer`. The API service will have its own load balancer, and you will need to set the UI's `API_URI` environment variable to the fully qualified hostname and port of the API service.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  namespace: hello-universe
+spec:
+  selector:
+    app: api
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer
+```
+
+For the UI service, change the image to the default Hello Universe image.
+
+```yaml
+containers:
+  - name: ui
+    image: ghcr.io/spectrocloud/hello-universe:1.1.2
+    imagePullPolicy: Always
+    ports:
+      - containerPort: 8080
+        name: ui
+```
+
+The UI service will have its own load balancer, and you will need to set the `API_URI` environment variable to the fully qualified hostname and port of the API service. Leave the `QUERY_K8S_API` environment variable set to `false`, and set `SVC_URI` to an empty string.
+
+```shell
+API_URI=http://<EXTERNAL_IP>:3000
+SVC_URI=""
+QUERY_K8S_API=false
+```
+
+If authorization is enabled, provide the `auth-token` Kubernetes secret with the API authorization token value. Otherwise, API will fail to authorize requests.
+
 ## Image Verification
 
 We sign our images through [Cosign](https://docs.sigstore.dev/signing/quickstart/). Review the [Image Verification](./docs/image-verification.md) page to learn more.

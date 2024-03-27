@@ -1,8 +1,8 @@
 FROM node:18-alpine AS modules
 WORKDIR /app
 COPY . .
-RUN npm ci && npm run build && \
-adduser -u 1002 -D appuser appuser
+RUN adduser -u 1002 -h /home/appuser -D appuser appuser && \
+npm ci && npm run build
 
 
 FROM node:18-alpine AS production

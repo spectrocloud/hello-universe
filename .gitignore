@@ -109,3 +109,7 @@ build/
 *.DS_Store
 
 *log
+
+# Deployment Internal
+
+internal-k8s.yaml
