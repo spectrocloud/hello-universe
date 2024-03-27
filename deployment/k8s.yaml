@@ -188,7 +188,8 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-  type: ClusterIP
+  type: ClusterIP # If you want to expose the API service, change this value to LoadBalancer. See below for an example.
+  # type: Loadbalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -226,7 +227,7 @@ spec:
                   key: auth-token
             - name: API_URI
               # Leave empty and set QUERY_K8S_API to true to leverage a single loadbalancer.
-              # Otherwise, set to the API service URL and set QUERY_K8S_API to false
+              # Otherwise, set to the API service's URL and set QUERY_K8S_API to false
               value: ""
             - name: SVC_URI
               value: "api.hello-universe.svc.cluster.local:3000"
