@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/spectrocloud/hello-universe/compare/v1.1.1...v1.1.2) (2024-03-27)
+
+
+### Bug Fixes
+
+* improving k8s usecase support ([#18](https://github.com/spectrocloud/hello-universe/issues/18)) ([3570a1a](https://github.com/spectrocloud/hello-universe/commit/3570a1a47eec02be9ec26a29c27bb7fc5902e68d))
+
 ## [1.1.1](https://github.com/spectrocloud/hello-universe/compare/v1.1.0...v1.1.1) (2024-01-23)
 
 
