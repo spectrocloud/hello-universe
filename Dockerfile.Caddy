@@ -1,4 +1,4 @@
-FROM node:18-alpine AS modules
+FROM node:20-alpine AS modules
 WORKDIR /app
 COPY . .
 RUN adduser -u 1002 -h /home/appuser -D appuser appuser && \
