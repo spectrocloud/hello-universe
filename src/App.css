@@ -1,5 +1,12 @@
 html {
-  background-color: #0b0f1b;
+  --background-dark-grey: #0b0f1b;
+  --border-primary-grey: #2b323c;
+  --text-color-off-white: #e8ebee;
+  --text-primary-blue: #72a8f5;
+  --text-secondary-blue: #9cc2f8;
+  --box-shadow-primary-grey: #192c47;
+  --box-shadow-secondary-grey: #213e67;
+  background-color: var(--background-dark-grey);
 }
 
 .App {
@@ -28,7 +35,7 @@ html {
 .App-header {
   min-height: 80vh;
   font-size: calc(10px + 4vmin);
-  color: #e8ebee;
+  color: var(--text-color-off-white);
 }
 
 .Header-items {
@@ -39,7 +46,11 @@ html {
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--text-primary-blue);
+}
+
+.App-link:hover {
+  color: var(--text-secondary-blue);
 }
 
 .App-footer {
@@ -47,7 +58,7 @@ html {
 }
 
 .Footer-rights {
-  color: #e8ebee;
+  color: var(--text-color-off-white);
 }
 
 .Social-icons {

@@ -3,23 +3,22 @@
     display: block;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid #2b323c;
+    border-bottom: 1px solid var(--border-primary-grey);
     overflow: hidden;
     padding: 2.5% 0;
 }
 
 .menu-item {
-    font-family: Poppins,Arial,Helvetica,sans-serif,Russo One;
-    font-size: calc(10px + 1vmin);    
+    font-size: calc(10px + 1vmin);
     font-weight: 700;
     margin: 0 36px;
     text-decoration: none;
-    color: rgb(114, 168, 245);
+    color: var(--text-primary-blue);
     padding: 5%;
 }
 
 .menu-item:hover {
-    color: #e8ebee;
+    color: var(--text-color-off-white) ;
 }
 
 .nav-logo{
@@ -27,7 +26,7 @@
 }
 
 .nav-burger-icon {
-    color: #e8ebee;
+    color: var(--text-color-off-white);
     display: none;
 }
 
