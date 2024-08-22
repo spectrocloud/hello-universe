@@ -3,10 +3,11 @@ import './Footer.css'
 import twitter from "../../img/twitter.png";
 import linkedin from "../../img/linkedin.png";
 import mastodon from "../../img/mastodon.png";
+import logo from "../../img/logo.svg"
 
 const Footer = () => {
     return(
-        <footer className="App-footer">
+        <footer className="footer">
           <div className="Social-icons">
             <a
               href="https://www.linkedin.com/company/spectro-cloud/"
@@ -32,9 +33,18 @@ const Footer = () => {
               <img src={mastodon} alt="mastodon" />
             </a>
           </div>
-          <span className="Footer-rights">
-            © 2024 Spectro Cloud®. All rights reserved.
-          </span>
+          <div>
+            <div>
+            <span className="Footer-rights">
+              Spacetastic Ltd. is a fictional company used by Spectro Cloud as an example company and domain. 
+              <br />
+              © 2024 Spectro Cloud®. All rights reserved.
+            </span>
+            </div>
+            <div className="footer-logo-container">
+              <img className="footer-logo" src={logo} alt="spectrocloud" />
+            </div>
+          </div>
         </footer>        
     );
 }
