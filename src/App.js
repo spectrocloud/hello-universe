@@ -2,13 +2,12 @@ import "./App.css";
 import twitter from "./img/twitter.png";
 import linkedin from "./img/linkedin.png";
 import mastodon from "./img/mastodon.png";
-import logo_text from "./img/logo_text.png";
-import { FadeIn, SpinningComponent } from "./components/Animated/Animated";
 import { useEffect, useState, useCallback } from "react";
-import {randomLogo} from "./utilities/helpers";
 import { env } from './env';
 import { getCounter, postCounter } from "./utilities/requests";
-import Menu from "./components/Animated/Menu/Menu";
+import Menu from "./components/Menu/Menu";
+import Title from "./components/LandingPage/Title"
+import PlanetSelection from "./components/LandingPage/PlanetSelection";
 
 const Status = {
  OK: "OK", 
@@ -94,27 +93,6 @@ function App() {
     }
   }, [API_URI, API_VERSION, TOKEN, connectionError, clickCount, firstLoad])
 
-  const getCounterHeader = useCallback(()=> {
-    if (apiStatus[0] === Status.OK) {
-      return <div className="Click-header">
-          <div className="Click-counter">{`Click Count ${clickCount} 🤖 `}</div> 
-          <div className="Server-status" > 🟢 API Server Connected </div>
-        </div>
-    }
-    if (apiStatus[0] === Status.Error) {
-      console.log(apiStatus[1])
-      return <div className="Click-header">
-          <div className="Click-counter">{`Click Count Not Available 🤖`}</div> 
-          <div className="Server-status" > 🔴 API Server Connection Error </div>
-        </div>
-    }
-
-    return <div className="Click-header">
-      <div className="Click-counter">{`Click Count ${clickCount} 🌏`}</div>
-      <div className="Server-status" > ⚪️ API Server Not Configured </div>
-    </div>
-  }, [clickCount, apiStatus])
-
   useEffect(() => {
     setIsLogoVisible(true);
     loadCount();
@@ -125,15 +103,16 @@ function App() {
       <header className="App-header">
         <Menu />
         <div className="Header-items">
-          {getCounterHeader()}
-          <FadeIn isVisible={isLogoVisible}>
+          <Title />
+          <PlanetSelection />
+          {/* <FadeIn isVisible={isLogoVisible}>
             <SpinningComponent>
               <div onClick={() => countUp()}>
                  {randomLogo(firstLoad)}
               </div>
             </SpinningComponent>
             <img src={logo_text} className="App-logo-text" alt="spectrocloud" />
-          </FadeIn>
+          </FadeIn> */}
         </div>
       </header>
       <footer className="App-footer">
@@ -163,7 +142,7 @@ function App() {
           </a>
         </div>
         <span className="Footer-rights">
-          © 2023 Spectro Cloud®. All rights reserved.
+          © 2024 Spectro Cloud®. All rights reserved.
         </span>
       </footer>
     </div>

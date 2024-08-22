@@ -1,9 +1,12 @@
 html {
-  background-color: #282c34;
+  background-color: #0b0f1b;
 }
 
 .App {
+  font-family: Poppins,Arial,Helvetica,sans-serif,Russo One;
   text-align: center;
+  max-width: 1200px;
+  margin: auto; 
 }
 
 .App-logo {
@@ -24,8 +27,8 @@ html {
 
 .App-header {
   min-height: 80vh;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(10px + 4vmin);
+  color: #e8ebee;
 }
 
 .Header-items {
@@ -39,25 +42,12 @@ html {
   color: #61dafb;
 }
 
-.Click-header {
-  font-family: Poppins,Arial,Helvetica,sans-serif,Russo One;
-  margin-bottom: 5%;
-}
-
-.Click-counter {
-  margin-bottom: 5%;
-}
-
-.Server-status {
-  font-size: calc(10px + 1vmin);
-}
-
 .App-footer {
   min-height: 20vh;
 }
 
 .Footer-rights {
-  color: #fff;
+  color: #e8ebee;
 }
 
 .Social-icons {
