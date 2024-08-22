@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Landing.css";
+import "./Elements.css";
 
 const PlanetSelection = () => {
   return (
@@ -7,10 +7,10 @@ const PlanetSelection = () => {
       <div className="selection-text">Pick a space destination you want to learn about. 👇 </div>
       <div className="selection-all-button-container">
         <div className="selection-button-container">
-          <a className="selection-button" href="/moon" target="_blank">Earth's Moon</a>
+          <a className="selection-button" href="/moon">Earth's Moon</a>
         </div>
         <div className="selection-button-container">
-          <a className="selection-button" href="/mars" target="_blank">Mars</a>
+          <a className="selection-button" href="/mars">Mars</a>
         </div>
       </div>
     </div>

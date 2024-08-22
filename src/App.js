@@ -1,13 +1,11 @@
 import "./App.css";
-import twitter from "./img/twitter.png";
-import linkedin from "./img/linkedin.png";
-import mastodon from "./img/mastodon.png";
 import { useEffect, useState, useCallback } from "react";
 import { env } from './env';
 import { getCounter, postCounter } from "./utilities/requests";
 import Menu from "./components/Menu/Menu";
-import Title from "./components/LandingPage/Title"
-import PlanetSelection from "./components/LandingPage/PlanetSelection";
+import Footer from "./components/Footer/Footer";
+import AppRoutes from "./components/AppRoutes";
+import { BrowserRouter } from "react-router-dom";
 
 const Status = {
  OK: "OK", 
@@ -99,53 +97,15 @@ function App() {
   }, [loadCount])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Menu />
-        <div className="Header-items">
-          <Title />
-          <PlanetSelection />
-          {/* <FadeIn isVisible={isLogoVisible}>
-            <SpinningComponent>
-              <div onClick={() => countUp()}>
-                 {randomLogo(firstLoad)}
-              </div>
-            </SpinningComponent>
-            <img src={logo_text} className="App-logo-text" alt="spectrocloud" />
-          </FadeIn> */}
-        </div>
-      </header>
-      <footer className="App-footer">
-        <div className="Social-icons">
-          <a
-            href="https://www.linkedin.com/company/spectro-cloud/"
-            target={"_blank"}
-            rel={"noreferrer"}
-          >
-            <img src={linkedin} alt="linkedin" />
-          </a>
-
-          <a
-            href="https://twitter.com/spectrocloudinc"
-            target={"_blank"}
-            rel={"noreferrer"}
-          >
-            <img src={twitter} alt="twitter" />
-          </a>
-
-          <a
-            href="https://hachyderm.io/@spectrocloudinc"
-            target={"_blank"}
-            rel={"noreferrer"}
-          >
-            <img src={mastodon} alt="mastodon" />
-          </a>
-        </div>
-        <span className="Footer-rights">
-          © 2024 Spectro Cloud®. All rights reserved.
-        </span>
-      </footer>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Menu />
+          <AppRoutes />
+        </header>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -52,24 +52,3 @@ html {
 .App-link:hover {
   color: var(--text-secondary-blue);
 }
-
-.App-footer {
-  min-height: 20vh;
-}
-
-.Footer-rights {
-  color: var(--text-color-off-white);
-}
-
-.Social-icons {
-  margin-bottom: 25px;
-}
-
-.Social-icons img {
-  width: 32px;
-  height: 32px;
-
-  filter: invert(100%);
-  margin-right: 3px;
-  margin-left: 3px;
-}

@@ -31,15 +31,6 @@
 .selection-button-container{
   margin: 8px 16px;
   flex: 1;
-  background-color: var(--text-primary-blue);
-  border-radius: 8px;
-  padding: 14px 25px;
-  box-shadow: -10px 10px var(--box-shadow-primary-grey);
-}
-
-.selection-button-container:hover{
-  background-color: var(--text-secondary-blue);
-  box-shadow: -10px 10px var(--box-shadow-secondary-grey);
 }
 
 .selection-button {
@@ -48,6 +39,16 @@
   font-weight: 700;
   text-align: center;
   text-decoration: none;
+  display: block;
+  padding: 14px 25px;
+  background-color: var(--text-primary-blue);
+  border-radius: 8px;
+  box-shadow: -10px 10px var(--box-shadow-primary-grey);
+}
+
+.selection-button:hover{
+  background-color: var(--text-secondary-blue);
+  box-shadow: -10px 10px var(--box-shadow-secondary-grey);
 }
 
 @media screen and (max-width: 768px) {
