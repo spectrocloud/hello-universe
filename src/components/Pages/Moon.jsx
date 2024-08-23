@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Title from './Elements/Title';
+import LineChart from './Elements/LineChart';
 
 const facts = [
   'The Moon was likely formed after a Mars-sized body collided with Earth about 4.5 billion years ago.', 
@@ -8,13 +9,14 @@ const facts = [
   'The Moon is 400 times smaller than the Sun, but also 400 times closer to Earth. This is why the Sun and Moon appear the same size when observed from Earth.',
   'The Moon has moonquakes, which are shorter and weaker than earthquakes. They are caused by the gravitational influence of the Earth.', 
   'There is water on the Moon! It is in the form of ice within dust and minerals on and under its surface.', 
-  'The Moon is moving approximately 1.48 inches (3.8 cm) away from Earth every year.', 
+  'The Moon is moving approximately 1.48 inches (3.8 cm) away from Earth every year.',
+  'The Moon\'s distance to Earth varies. The two extreme points of the Moon\'s orbit each month are known as the lunar perigee and apogee. The Moon is closest at perigee and furthest at apogee.'
 ];
 
 const INTERVAL_LENGTH = 5000;
 
 class Moon extends Component {
-  
+
   constructor() {
     super();
     this.state = { factIndex: 0 };
@@ -27,17 +29,19 @@ class Moon extends Component {
     }, INTERVAL_LENGTH);
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     clearInterval(this.timeout);
   }
 
   render() {
     let fact = facts[this.state.factIndex % facts.length];
+    
 
     return (
       <div className="Header-items">
         <Title title = {`Earth's Moon`} 
           subtitle={fact}/>
+        <LineChart/>
       </div>
       );
     }

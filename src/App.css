@@ -36,6 +36,7 @@ html {
   min-height: 80vh;
   font-size: calc(10px + 4vmin);
   color: var(--text-color-off-white);
+  margin: 0 2.5%;
 }
 
 .Header-items {
