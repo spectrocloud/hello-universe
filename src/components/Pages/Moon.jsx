@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Title from './Elements/Title';
 import LineChart from './Elements/LineChart';
+import EarthToMoon from "../Data/EarthToMoon";
 
 const facts = [
   'The Moon was likely formed after a Mars-sized body collided with Earth about 4.5 billion years ago.', 
@@ -35,13 +36,13 @@ class Moon extends Component {
 
   render() {
     let fact = facts[this.state.factIndex % facts.length];
-    
+    const [data, options] = EarthToMoon();
 
     return (
       <div className="Header-items">
         <Title title = {`Earth's Moon`} 
           subtitle={fact}/>
-        <LineChart/>
+        <LineChart data={data} options={options}/>
       </div>
       );
     }

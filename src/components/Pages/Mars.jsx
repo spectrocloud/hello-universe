@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Title from './Elements/Title';
+import TemperatureMars from '../Data/TemperatureMars'
+import LineChart from './Elements/LineChart';
 
 const facts = [
   'Mars is about half the size of Earth. If Earth were the size of a nickel, Mars would be about as big as a raspberry.', 
@@ -27,17 +29,19 @@ class Mars extends Component {
     }, INTERVAL_LENGTH);
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     clearInterval(this.timeout);
   }
 
   render() {
     let fact = facts[this.state.factIndex % facts.length];
+    const [data, options] = TemperatureMars();
 
     return (
       <div className="Header-items">
         <Title title = {`Mars`} 
           subtitle={fact}/>
+        <LineChart data={data} options={options}/>
       </div>
       );
     }

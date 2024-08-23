@@ -82,7 +82,7 @@ function GetStyledChart({labels, dataPoints, chartTitle, xLabel, yLabel}) {
                 tension: 0.5,
             }, 
             point: {
-                radius: 0,
+                radius: 3,
             }
         },
     };
