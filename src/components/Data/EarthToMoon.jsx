@@ -19,7 +19,7 @@ const distances = new Map([
 
 function getLastTwelveMonths() {
     let labels = [];
-    let data = []
+    let data = [];
     let d = new Date();
     d.setDate(1);
     for (let i=0; i<=11; i++) {
@@ -38,10 +38,17 @@ function getLastTwelveMonths() {
 
 function EarthToMoon() {
     const [labels, moonData] = getLastTwelveMonths();
+    const data = [
+        {
+            values: moonData,
+            color: "#72a8f5",
+            label: "Distance",
+        }, 
+    ]
 
     return GetStyledChart({
         labels: labels, 
-        dataPoints: moonData, 
+        inputData: data,
         chartTitle: 'Lunar Perigee and Apogee',
         yLabel: '1000s Kilometers',
     })

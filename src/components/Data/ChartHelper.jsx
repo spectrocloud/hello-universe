@@ -1,22 +1,26 @@
 
-function GetStyledChart({labels, dataPoints, chartTitle, xLabel, yLabel}) {
+
+function GetStyledChart({labels, inputData, chartTitle, xLabel, yLabel}) {
     const data = {
         labels: labels,
-        datasets: [
-            {
-                backgroundColor: "#72a8f5",
-                borderColor: "#72a8f5",
-                data: dataPoints,
-            },
-        ],
+        datasets: [],
     };
+    inputData.forEach(element => {
+        data.datasets.push( 
+            {
+                backgroundColor: element.color,
+                borderColor: element.color,
+                label: element.label,
+                data: element.values,
+        })
+    });
     const options = { 
         plugins:{
             title: {
                 display: true,
                 position: 'top',
                 text: chartTitle,
-                color: '#72a8f5',
+                color: '#e8ebee',
                 font: {
                     family: 'Poppins,Arial,Helvetica,sans-serif,Russo One',
                     size: 24,
@@ -25,12 +29,15 @@ function GetStyledChart({labels, dataPoints, chartTitle, xLabel, yLabel}) {
                 padding: {top: 0, left: 0, right: 0, bottom: 20}
             },
             legend: {
-                display: false,
+                display: true,
                 labels: {
+                    color: '#e8ebee',
                     font: {
-                        size: 18,
+                        size: 14,
                     },
+                    padding: 10,
                 },
+                position: "right",
             },
         },
         scales: {
@@ -39,7 +46,7 @@ function GetStyledChart({labels, dataPoints, chartTitle, xLabel, yLabel}) {
                 title: {
                     display: true,
                     text: xLabel,
-                    color: '#9cc2f8',
+                    color: '#e8ebee',
                     font: {
                         family: 'Poppins,Arial,Helvetica,sans-serif,Russo One',
                         size: 20,
@@ -48,7 +55,7 @@ function GetStyledChart({labels, dataPoints, chartTitle, xLabel, yLabel}) {
                     padding: {top: 24, left: 0, right: 0, bottom: 0}
                 },
                 ticks: {
-                    color: '#9cc2f8',
+                    color: '#e8ebee',
                     font: {
                         size: 14,
                         family: 'Poppins,Arial,Helvetica,sans-serif,Russo One',
@@ -60,7 +67,7 @@ function GetStyledChart({labels, dataPoints, chartTitle, xLabel, yLabel}) {
                 title: {
                 display: true,
                 text: yLabel,
-                color: '#9cc2f8',
+                color: '#e8ebee',
                 font: {
                     family: 'Poppins,Arial,Helvetica,sans-serif,Russo One',
                     size: 20,
@@ -69,7 +76,7 @@ function GetStyledChart({labels, dataPoints, chartTitle, xLabel, yLabel}) {
                 padding: {top: 0, left: 0, right: 0, bottom: 24}
                 },
                 ticks: {
-                    color: '#9cc2f8',
+                    color: '#e8ebee',
                     font: {
                         size: 14,
                         family: 'Poppins,Arial,Helvetica,sans-serif,Russo One',

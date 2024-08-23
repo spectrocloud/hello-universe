@@ -20,7 +20,8 @@ class Moon extends Component {
 
   constructor() {
     super();
-    this.state = { factIndex: 0 };
+    const [data, options] = EarthToMoon();
+    this.state = { factIndex: 0, data: data, options: options};
   }
 
   componentDidMount() {
@@ -36,13 +37,12 @@ class Moon extends Component {
 
   render() {
     let fact = facts[this.state.factIndex % facts.length];
-    const [data, options] = EarthToMoon();
 
     return (
       <div className="Header-items">
         <Title title = {`Earth's Moon`} 
           subtitle={fact}/>
-        <LineChart data={data} options={options}/>
+        <LineChart data={this.state.data} options={this.state.options}/>
       </div>
       );
     }

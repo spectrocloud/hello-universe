@@ -11,6 +11,7 @@ const facts = [
   'A year on Mars lasts 687 Earth days! This is because Mars take a lot longer than Earth to complete its orbit around the Sun.',
   'Mars is one of the most explored planets in our solar system, and it\'s the only planet where we\'ve sent rovers to roam the alien landscape.', 
   'Mars has two moons, Phobos and Deimos.',
+  'Similarly to Earth, Mars has four distinct seasons. However, each season lasts about twice as long because the Martian year is almost twice that of Earth.',
 ];
 
 const INTERVAL_LENGTH = 5000;
@@ -19,7 +20,8 @@ class Mars extends Component {
   
   constructor() {
     super();
-    this.state = { factIndex: 0 };
+    const [data, options] = TemperatureMars();
+    this.state = { factIndex: 0, data: data, options: options};
   }
 
   componentDidMount() {
@@ -35,13 +37,12 @@ class Mars extends Component {
 
   render() {
     let fact = facts[this.state.factIndex % facts.length];
-    const [data, options] = TemperatureMars();
 
     return (
       <div className="Header-items">
         <Title title = {`Mars`} 
           subtitle={fact}/>
-        <LineChart data={data} options={options}/>
+        <LineChart data={this.state.data} options={this.state.options}/>
       </div>
       );
     }
