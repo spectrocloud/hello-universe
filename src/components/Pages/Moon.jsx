@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Title from './Elements/Title';
 import LineChart from './Elements/LineChart';
 import EarthToMoon from "../Data/EarthToMoon";
+import { IncrementVisitorCount } from '../../utilities/counters';
 
 const facts = [
   'The Moon was likely formed after a Mars-sized body collided with Earth about 4.5 billion years ago.', 
@@ -16,37 +17,41 @@ const facts = [
 
 const INTERVAL_LENGTH = 5000;
 
-class Moon extends Component {
+function Moon() {
+  const [factIndex, setFactIndex] = useState(0);
+  const [data, setData] = useState(null);
+  const [options, setOptions] = useState(null);
 
-  constructor() {
-    super();
+  useEffect(() => {
+    IncrementVisitorCount("Moon");
     const [data, options] = EarthToMoon();
-    this.state = { factIndex: 0, data: data, options: options};
-  }
-
-  componentDidMount() {
-    this.timeout = setInterval(() => {
-      let currentIdx = this.state.factIndex;
-      this.setState({ factIndex: currentIdx + 1 });
+    setData(data);
+    setOptions(options);
+    setInterval(() => {
+      let currentIdx = factIndex;
+      setFactIndex(currentIdx + 1);
     }, INTERVAL_LENGTH);
-  }
+  }, [factIndex])
 
-  componentWillUnmount() {
-    clearInterval(this.timeout);
-  }
+  let fact = facts[factIndex % facts.length];
 
-  render() {
-    let fact = facts[this.state.factIndex % facts.length];
-
+  // data not loaded yet
+  if (data == null || options == null) {
     return (
       <div className="Header-items">
         <Title title = {`Earth's Moon`} 
           subtitle={fact}/>
-        <LineChart data={this.state.data} options={this.state.options}/>
       </div>
       );
-    }
+  }
 
-  };
+  return (
+    <div className="Header-items">
+      <Title title = {`Earth's Moon`} 
+        subtitle={fact}/>
+      <LineChart data={data} options={options}/>
+    </div>
+    );
+};
   
   export default Moon;

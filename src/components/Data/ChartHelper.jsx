@@ -37,7 +37,7 @@ function GetStyledChart({labels, inputData, chartTitle, xLabel, yLabel}) {
                     },
                     padding: 10,
                 },
-                position: "right",
+                position: "bottom",
             },
         },
         scales: {

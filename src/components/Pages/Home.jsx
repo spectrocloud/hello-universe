@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Title from './Elements/Title';
 import PlanetSelection from './Elements/PlanetSelection';
+import { IncrementVisitorCount } from '../../utilities/counters';
 
-const Home = () => {
-    return (
+function Home () {
+  useEffect(() => {
+    IncrementVisitorCount("Home")
+  }, [])
+
+  return (
       <div className="Header-items">
       <Title title = {`Welcome to Spacetastic!`} 
         subtitle={
         `We are on a mission to inspire the next generation of space dreamers by showing them the marvels of space.`  
         }/>
       <PlanetSelection />
-    </div>
-    );
-  };
+      </div>
+  );
+}
   
-  export default Home;
+export default Home;

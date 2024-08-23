@@ -34,7 +34,7 @@
 }
 
 .selection-button {
-  font-size: calc(10px + 2vmin);;
+  font-size: calc(10px + 2vmin);
   color: var(--text-color-off-white);
   font-weight: 700;
   text-align: center;
@@ -67,4 +67,40 @@
   .line-chart-container{
     width: 100%;
   }
+}
+
+.description-text {
+  font-size: calc(10px + 1.5vmin);
+  margin-top: 5%;
+}
+
+.description-link {
+  color: var(--text-primary-blue);
+}
+
+.visitors-table {
+  border-collapse: collapse;
+  width: 100%;
+  border-spacing: 30px;
+}
+
+.visitors-table-heading {
+  font-size: calc(10px + 2vmin);
+  text-align: left;
+  background-color: var(--text-primary-blue);
+  color: var(--text-color-off-white);
+}
+
+.visitors-table-row {
+  font-size: calc(10px + 2vmin);
+  color: var(--text-color-off-white);
+  border: 1px solid var(--border-primary-grey);
+}
+
+.visitors-table-heading thead {
+  border: 1px solid var(--border-primary-grey);
+}
+
+.visitors-table td, th {
+  padding: 16px;
 }

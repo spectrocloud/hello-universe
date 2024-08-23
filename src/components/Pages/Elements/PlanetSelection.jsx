@@ -13,6 +13,10 @@ const PlanetSelection = () => {
           <a className="selection-button" href="/mars">Mars</a>
         </div>
       </div>
+      <div className="description-text">
+        Curious about how popular our space destinations are? Check out the  
+        <a className= "description-link" href="/stats"> Spacetastic Site Statictics</a> page.
+      </div>
     </div>
   );
 };

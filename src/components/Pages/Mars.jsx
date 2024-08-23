@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Title from './Elements/Title';
 import TemperatureMars from '../Data/TemperatureMars'
 import LineChart from './Elements/LineChart';
+import { IncrementVisitorCount } from '../../utilities/counters';
 
 const facts = [
   'Mars is about half the size of Earth. If Earth were the size of a nickel, Mars would be about as big as a raspberry.', 
@@ -16,36 +17,42 @@ const facts = [
 
 const INTERVAL_LENGTH = 5000;
 
-class Mars extends Component {
+function Mars() {
   
-  constructor() {
-    super();
+  const [factIndex, setFactIndex] = useState(0);
+  const [data, setData] = useState(null);
+  const [options, setOptions] = useState(null);
+
+  useEffect(() => {
+    IncrementVisitorCount("Mars");
     const [data, options] = TemperatureMars();
-    this.state = { factIndex: 0, data: data, options: options};
-  }
-
-  componentDidMount() {
-    this.timeout = setInterval(() => {
-      let currentIdx = this.state.factIndex;
-      this.setState({ factIndex: currentIdx + 1 });
+    setData(data);
+    setOptions(options);
+    setInterval(() => {
+      let currentIdx = factIndex;
+      setFactIndex(currentIdx + 1);
     }, INTERVAL_LENGTH);
-  }
+  }, [factIndex]);
 
-  componentWillUnmount() {
-    clearInterval(this.timeout);
-  }
-
-  render() {
-    let fact = facts[this.state.factIndex % facts.length];
-
+  let fact = facts[factIndex % facts.length];
+  
+  // data not loaded yet
+  if (data == null || options == null) {
     return (
       <div className="Header-items">
         <Title title = {`Mars`} 
           subtitle={fact}/>
-        <LineChart data={this.state.data} options={this.state.options}/>
       </div>
-      );
-    }
-  };
+    );
+  }
+
+  return (
+    <div className="Header-items">
+      <Title title = {`Mars`} 
+        subtitle={fact}/>
+      <LineChart data={data} options={options}/>
+    </div>
+  );
+}
   
   export default Mars;
