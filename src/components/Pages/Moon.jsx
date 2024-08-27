@@ -12,7 +12,7 @@ const facts = [
   'The Moon has moonquakes, which are shorter and weaker than earthquakes. They are caused by the gravitational influence of the Earth.', 
   'There is water on the Moon! It is in the form of ice within dust and minerals on and under its surface.', 
   'The Moon is moving approximately 1.48 inches (3.8 cm) away from Earth every year.',
-  'The Moon\'s distance to Earth varies. The two extreme points of the Moon\'s orbit each month are known as the lunar perigee and apogee. The Moon is closest at perigee and furthest at apogee.'
+  'The Moon\'s distance to Earth varies. The Moon is closest at perigee and furthest at apogee.'
 ];
 
 const INTERVAL_LENGTH = 5000;
@@ -27,10 +27,13 @@ function Moon() {
     const [data, options] = EarthToMoon();
     setData(data);
     setOptions(options);
-    setInterval(() => {
+    let intervalId = setInterval(() => {
       let currentIdx = factIndex;
       setFactIndex(currentIdx + 1);
     }, INTERVAL_LENGTH);
+    return(() => {
+      clearInterval(intervalId)
+    })
   }, [factIndex])
 
   let fact = facts[factIndex % facts.length];

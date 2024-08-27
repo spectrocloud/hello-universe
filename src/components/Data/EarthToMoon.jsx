@@ -49,7 +49,7 @@ function EarthToMoon() {
     return GetStyledChart({
         labels: labels, 
         inputData: data,
-        chartTitle: 'Lunar Perigee and Apogee',
+        chartTitle: 'Distance to the Moon',
         yLabel: '1000s Kilometers',
     })
 }

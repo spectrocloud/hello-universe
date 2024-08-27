@@ -1,8 +1,9 @@
 .title-container {
     max-width: 800px;
     /* top | right | bottom | left */
-    margin: 0 auto 5% auto;
-  }
+    margin: 0 auto;
+    height: 250px;
+}
 
 .title {
   margin-bottom: 5%;
@@ -15,7 +16,7 @@
 .selection-container {
   max-width: 800px;
   /* top | right | bottom | left */
-  margin: 0 auto 5% auto;
+  margin: 0 auto;
 }
 
 .selection-text {
@@ -65,7 +66,7 @@
     margin: 5% auto;
   }
   .line-chart-container{
-    width: 100%;
+    display: none;
   }
 }
 

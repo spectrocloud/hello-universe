@@ -8,7 +8,7 @@ function Stats() {
     <div className="Header-items">
     <Title title = {`Spacetastic Site Statistics`} 
         subtitle={
-        `Here you can see how many space explorers visit the site.`  
+        `Here you can see how many space explorers have visited us so far.`  
         }/>
     <VisitorTable />
     </div>
