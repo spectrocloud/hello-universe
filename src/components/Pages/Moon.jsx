@@ -3,6 +3,12 @@ import Title from './Elements/Title';
 import LineChart from './Elements/LineChart';
 import EarthToMoon from "../Data/EarthToMoon";
 import { IncrementVisitorCount } from '../../utilities/counters';
+import DisplayPicture from './Elements/DisplayPicture';
+import Moon1 from "../../img/moon/moon-1.jpg";
+import Moon2 from "../../img/moon/moon-2.webp";
+import Moon3 from "../../img/moon/moon-3.webp";
+import Moon4 from "../../img/moon/moon-4.webp";
+import Moon5 from "../../img/moon/moon-5.webp";
 
 const facts = [
   'The Moon was likely formed after a Mars-sized body collided with Earth about 4.5 billion years ago.', 
@@ -15,10 +21,12 @@ const facts = [
   'The Moon\'s distance to Earth varies. The Moon is closest at perigee and furthest at apogee.'
 ];
 
+const images = [Moon1, Moon2, Moon3, Moon4, Moon5];
 const INTERVAL_LENGTH = 5000;
 
 function Moon() {
   const [factIndex, setFactIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
   const [data, setData] = useState(null);
   const [options, setOptions] = useState(null);
 
@@ -27,16 +35,22 @@ function Moon() {
     const [data, options] = EarthToMoon();
     setData(data);
     setOptions(options);
-    let intervalId = setInterval(() => {
+    let factIntervalId = setInterval(() => {
       let currentIdx = factIndex;
       setFactIndex(currentIdx + 1);
     }, INTERVAL_LENGTH);
+    let imageIntervalId = setInterval(() => {
+      let currentIdx = imageIndex;
+      setImageIndex(currentIdx + 1);
+    }, INTERVAL_LENGTH);
     return(() => {
-      clearInterval(intervalId)
+      clearInterval(factIntervalId);
+      clearInterval(imageIntervalId);
     })
-  }, [factIndex])
+  }, [factIndex, imageIndex])
 
   let fact = facts[factIndex % facts.length];
+  let image = images[imageIndex % images.length];
 
   // data not loaded yet
   if (data == null || options == null) {
@@ -53,6 +67,7 @@ function Moon() {
       <Title title = {`Earth's Moon`} 
         subtitle={fact}/>
       <LineChart data={data} options={options}/>
+      <DisplayPicture title="Our Stunning Moon 📸 " image={image} credit={"science.nasa.gov/moon"}/>
     </div>
     );
 };

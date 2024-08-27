@@ -3,6 +3,12 @@ import Title from './Elements/Title';
 import TemperatureMars from '../Data/TemperatureMars'
 import LineChart from './Elements/LineChart';
 import { IncrementVisitorCount } from '../../utilities/counters';
+import DisplayPicture from './Elements/DisplayPicture';
+import Mars1 from "../../img/mars/mars-1.webp";
+import Mars2 from "../../img/mars/mars-2.webp";
+import Mars3 from "../../img/mars/mars-3.webp";
+import Mars4 from "../../img/mars/mars-4.webp";
+import Mars5 from "../../img/mars/mars-5.webp";
 
 const facts = [
   'Mars is about half the size of Earth. If Earth were the size of a nickel, Mars would be about as big as a raspberry.', 
@@ -14,11 +20,12 @@ const facts = [
   'Similarly to Earth, Mars has four distinct seasons. However, each season lasts about twice as long because the Martian year is almost twice that of Earth.',
 ];
 
+const images = [Mars1, Mars2, Mars3, Mars4, Mars5];
 const INTERVAL_LENGTH = 5000;
 
 function Mars() {
-  
   const [factIndex, setFactIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
   const [data, setData] = useState(null);
   const [options, setOptions] = useState(null);
 
@@ -27,17 +34,23 @@ function Mars() {
     const [data, options] = TemperatureMars();
     setData(data);
     setOptions(options);
-    let intervalId = setInterval(() => {
+    let factIntervalId = setInterval(() => {
       let currentIdx = factIndex;
       setFactIndex(currentIdx + 1);
     }, INTERVAL_LENGTH);
+    let imageIntervalId = setInterval(() => {
+      let currentIdx = imageIndex;
+      setImageIndex(currentIdx + 1);
+    }, INTERVAL_LENGTH);
     return(() => {
-      clearInterval(intervalId)
+      clearInterval(factIntervalId);
+      clearInterval(imageIntervalId);
     })
   }, [factIndex]);
 
   let fact = facts[factIndex % facts.length];
-  
+  let image = images[imageIndex % images.length];
+
   // data not loaded yet
   if (data == null || options == null) {
     return (
@@ -53,6 +66,7 @@ function Mars() {
       <Title title = {`Mars`} 
         subtitle={fact}/>
       <LineChart data={data} options={options}/>
+      <DisplayPicture title="The Wonder of Mars 📸 " image={image} credit={"science.nasa.gov/mars"}/>
     </div>
   );
 }
