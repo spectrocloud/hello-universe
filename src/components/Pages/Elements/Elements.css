@@ -52,7 +52,7 @@
   box-shadow: -10px 10px var(--box-shadow-secondary-grey);
 }
 
-.line-chart-container{
+.chart-container{
   width: 75%;
 }
 
@@ -89,7 +89,7 @@
     width: 50%;
     margin: 5% auto;
   }
-  .line-chart-container{
+  .chart-container{
     display: none;
   }
 
