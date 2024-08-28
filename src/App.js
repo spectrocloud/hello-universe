@@ -28,11 +28,6 @@ function App() {
     token: TOKEN,
   }
   
-  // // useCallback enables caching between re-renders
-  // const connectionError = useCallback(()=> {
-  //   return new Error(`Error: Unable to connect to the API server on ${API_URI}. Please try again later. 😢`)
-  // }, [API_URI])
-
   // const loadCount = useCallback(async () => {
   //   // If no API URI is provided then use local storage for count.
   //   if (API_URI === "") {

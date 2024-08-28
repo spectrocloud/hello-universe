@@ -13,33 +13,39 @@ function Stats({apiConnection}) {
     const [apiStatus, setAPIStatus] = useState([APIStatus.NotSet, null]);
     
     useEffect(() => {
-        const [moonVisitors, moonErr] = GetVisitorCount({apiConnection: apiConnection, page: "Moon"});
-        const [marsVisitors, marsErr] = GetVisitorCount({apiConnection: apiConnection, page: "Mars"});
-        if (moonErr != null) {
-            setAPIStatus({
-                status: APIStatus.Error, 
-                error: moonErr,
-            })
+        const fetchData = async () => {
+            const [moonVisitors, moonErr] = await GetVisitorCount({apiConnection, page: "Moon"});
+            if (moonErr != null) {
+                setAPIStatus({
+                    status: APIStatus.Error, 
+                    error: moonErr,
+                })
+                return;
+            }
+
+            const [marsVisitors, marsErr] = await GetVisitorCount({apiConnection: apiConnection, page: "Mars"});
+            if (marsErr != null) {
+                setAPIStatus({
+                    status: APIStatus.Error, 
+                    error: marsErr,
+                })
+                return;
+            }
+
+            if (parseInt(marsVisitors) > parseInt(moonVisitors)) {
+                setMostPopularPage("Mars");
+            }
+
+            const [data, options] = SiteStats({moonVisitors: moonVisitors, marsVisitors: marsVisitors});
+            setData(data);
+            setOptions(options);
         }
-        if (marsErr != null) {
-            setAPIStatus({
-                status: APIStatus.Error, 
-                error: marsErr,
-            })
-        }
-        let values = {
-            moonVisitors: moonVisitors,
-            marsVisitors: marsVisitors,
-        };
-        if (values.marsVisitors > values.moonVisitors) {
-            setMostPopularPage("Mars");
-        }
-        
-        const [data, options] = SiteStats(values);
-        setData(data);
-        setOptions(options);
-      }, [apiConnection])
-    
+
+        // Invoke the async fetches
+        fetchData();
+
+      }, [apiConnection, setMostPopularPage])
+
     // data not loaded yet
     if (data == null || options == null) {
         return (
