@@ -8,13 +8,13 @@ import Mars from "./Pages/Mars";
 import Moon from "./Pages/Moon";
 import Stats from "./Pages/Stats";
 
-const AppRoutes = () => {
-    return(
+function AppRoutes({apiConnection}) {
+   return(
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/mars" element={<Mars />} />
         <Route path="/moon" element={<Moon />} />
-        <Route path="/stats" element={<Stats />} />
+        <Route path="/stats" element={<Stats apiConnection={apiConnection}/>} />
       </Routes>
     );
 }
