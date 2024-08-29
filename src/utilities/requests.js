@@ -48,10 +48,10 @@ async function getCounter({apiConnection, page}) {
         data =  response?.total || 0
       } catch (error) {
         console.log(error)
-        return error
+        return [0, error]
       }
 
-      return data;
+      return [data, null];
 }
 
 export { postCounter, getCounter };

@@ -38,12 +38,12 @@ async function GetVisitorCount({apiConnection, page}) {
     }
 
     // Make server requests
-    try {
-      const count = await getCounter({apiConnection, page});
-      return [count, null];
-    } catch (error) {
+    const [count, err] = await getCounter({apiConnection, page});
+    if (err !== null) {
       return [0, connectionError(apiConnection.uri)];
     }
+    
+    return [count, null]
 }
 
 export { IncrementVisitorCount, GetVisitorCount };

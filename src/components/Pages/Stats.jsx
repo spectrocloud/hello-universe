@@ -20,7 +20,7 @@ function Stats({apiConnection}) {
             })
         }
         const fetchData = async () => {
-            const [moonVisitors, moonErr] = await GetVisitorCount({apiConnection, page: "Moon"});
+            const [moonVisitors, moonErr] = await GetVisitorCount({apiConnection, page: "moon"});
             if (moonErr != null) {
                 setAPIStatus({
                     status: APIStatus.Error, 
@@ -29,7 +29,7 @@ function Stats({apiConnection}) {
                 return;
             }
 
-            const [marsVisitors, marsErr] = await GetVisitorCount({apiConnection: apiConnection, page: "Mars"});
+            const [marsVisitors, marsErr] = await GetVisitorCount({apiConnection: apiConnection, page: "mars"});
             if (marsErr != null) {
                 setAPIStatus({
                     status: APIStatus.Error, 
@@ -60,6 +60,7 @@ function Stats({apiConnection}) {
                     subtitle={
                     `Here you can see how many space explorers have visited us so far.`  
                     }/>
+                <APIStatusIndicator api={apiStatus} />
             </div>
         );
     }
