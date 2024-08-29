@@ -24,14 +24,17 @@ const facts = [
 const images = [Moon1, Moon2, Moon3, Moon4, Moon5];
 const INTERVAL_LENGTH = 5000;
 
-function Moon() {
+function Moon({apiConnection}) {
   const [factIndex, setFactIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const [data, setData] = useState(null);
   const [options, setOptions] = useState(null);
 
   useEffect(() => {
-    IncrementVisitorCount("Moon");
+    const incrementVisitor = async () => {
+      await IncrementVisitorCount({apiConnection: apiConnection, page: "Moon"});
+    }
+    incrementVisitor();    
     const [data, options] = EarthToMoon();
     setData(data);
     setOptions(options);
@@ -47,7 +50,7 @@ function Moon() {
       clearInterval(factIntervalId);
       clearInterval(imageIntervalId);
     })
-  }, [factIndex, imageIndex])
+  }, [apiConnection, factIndex, imageIndex])
 
   let fact = facts[factIndex % facts.length];
   let image = images[imageIndex % images.length];

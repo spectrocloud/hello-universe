@@ -13,6 +13,12 @@ function Stats({apiConnection}) {
     const [apiStatus, setAPIStatus] = useState([APIStatus.NotSet, null]);
     
     useEffect(() => {
+        if (apiConnection.uri !== "") {
+            setAPIStatus({
+                status: APIStatus.OK, 
+                error: null,
+            })
+        }
         const fetchData = async () => {
             const [moonVisitors, moonErr] = await GetVisitorCount({apiConnection, page: "Moon"});
             if (moonErr != null) {

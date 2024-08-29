@@ -12,8 +12,8 @@ function AppRoutes({apiConnection}) {
    return(
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/mars" element={<Mars />} />
-        <Route path="/moon" element={<Moon />} />
+        <Route path="/mars" element={<Mars apiConnection={apiConnection} />} />
+        <Route path="/moon" element={<Moon apiConnection={apiConnection} />} />
         <Route path="/stats" element={<Stats apiConnection={apiConnection}/>} />
       </Routes>
     );

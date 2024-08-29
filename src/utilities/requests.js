@@ -15,7 +15,7 @@ async function postCounter({apiConnection, page}) {
       let data = ""
       
       try {
-        const results = await fetch(`${apiConnection.uri}/api/v${apiConnection.version}/${page}`, requestOptions)
+        const results = await fetch(`${apiConnection.uri}/api/v${apiConnection.version}/counter/${page}`, requestOptions)
         const response = await results.json()
         data =  response?.total || 0
       } catch (error) {
@@ -43,7 +43,7 @@ async function getCounter({apiConnection, page}) {
       let data = ""
       
       try {
-        const results = await fetch(`${apiConnection.uri}/api/v${apiConnection.version}/${page}`, requestOptions)
+        const results = await fetch(`${apiConnection.uri}/api/v${apiConnection.version}/counter/${page}`, requestOptions)
         const response = await results.json()
         data =  response?.total || 0
       } catch (error) {

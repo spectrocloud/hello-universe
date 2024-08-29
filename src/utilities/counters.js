@@ -4,11 +4,10 @@ const connectionError = (uri)=> {
   return new Error(`Error: Unable to connect to the API server on ${uri}. Please try again later. 😢`)
 }
 
-async function IncrementVisitorCount({apiConnection, page}) {
-    const counterName = 'Spacetastic-'+ page + '-Count';
-
-    // No API set
-    if (apiConnection == null || apiConnection.uri === "") {
+async function IncrementVisitorCount({apiConnection, page}) {  
+  // No API set
+  if (apiConnection === undefined || apiConnection.uri === "") {
+      const counterName = 'Spacetastic-'+ page + '-Count';
       const count = localStorage.getItem(counterName);
       if (!count) {
         localStorage.setItem(counterName, 1);
@@ -27,10 +26,9 @@ async function IncrementVisitorCount({apiConnection, page}) {
 }
 
 async function GetVisitorCount({apiConnection, page}) {
-    const counterName = 'Spacetastic-'+ page + '-Count';
-    
-    // No API set
-    if (apiConnection == null || apiConnection.uri === "") {
+  // No API set
+  if (apiConnection === undefined || apiConnection.uri === "") {
+      const counterName = 'Spacetastic-'+ page + '-Count';
       const count = localStorage.getItem(counterName);
       if (!count) {
         localStorage.setItem(counterName, 1);

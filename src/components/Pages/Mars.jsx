@@ -23,14 +23,17 @@ const facts = [
 const images = [Mars1, Mars2, Mars3, Mars4, Mars5];
 const INTERVAL_LENGTH = 5000;
 
-function Mars() {
+function Mars({apiConnection}) {
   const [factIndex, setFactIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const [data, setData] = useState(null);
   const [options, setOptions] = useState(null);
 
   useEffect(() => {
-    IncrementVisitorCount("Mars");
+    const incrementVisitor = async () => {
+      await IncrementVisitorCount({apiConnection: apiConnection, page: "Mars"});
+    }
+    incrementVisitor();
     const [data, options] = TemperatureMars();
     setData(data);
     setOptions(options);
@@ -46,7 +49,7 @@ function Mars() {
       clearInterval(factIntervalId);
       clearInterval(imageIntervalId);
     })
-  }, [factIndex]);
+  }, [apiConnection, factIndex, imageIndex]);
 
   let fact = facts[factIndex % facts.length];
   let image = images[imageIndex % images.length];

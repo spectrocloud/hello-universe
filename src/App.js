@@ -27,63 +27,6 @@ function App() {
     version: API_VERSION, 
     token: TOKEN,
   }
-  
-  // const loadCount = useCallback(async () => {
-  //   // If no API URI is provided then use local storage for count.
-  //   if (API_URI === "") {
-  //     const count = localStorage.getItem("clickCount");
-  //     setClickCount(parseInt(count) || 0);
-  //     return
-  //   }
-
-  //   // An API URI must have been provided, use that to get the count
-  //   let count;
-  //   try {
-  //     count = await getCounter(API_URI, API_VERSION, TOKEN);
-  //     setAPIStatus([Status.OK, null])
-  //     if (count.message) {
-  //       count = 0;
-  //       setAPIStatus([Status.Error, connectionError()])
-  //     }
-  //   } catch(error) {
-  //     setAPIStatus([Status.Error, connectionError()])
-  //   } finally {
-  //     setClickCount(count);
-  //   }
-  // }, [API_URI, API_VERSION, TOKEN, connectionError])
-
-  // const countUp = useCallback(async () => {
-  //   if (firstLoad) {
-  //     setFirstLoad(false);
-  //   }
-
-  //   // If no API URI is provided then use local storage for count.
-  //   if(API_URI === "") {
-  //     setClickCount(clickCount + 1);
-  //     localStorage.setItem("clickCount", clickCount);
-  //     return
-  //   }
-
-  //   // An API URI must have been provided, use that to update the count
-  //   let count;
-  //   try {
-  //     count = await postCounter(API_URI, API_VERSION, TOKEN);
-  //     setAPIStatus([Status.OK, null])
-  //     if (count.message) {
-  //       count = 0;
-  //       setAPIStatus([Status.Error, connectionError()])
-  //     }
-  //   } catch (error) {
-  //     setAPIStatus([Status.Error, connectionError()])
-  //   } finally {
-  //     setClickCount(count);
-  //   }
-  // }, [API_URI, API_VERSION, TOKEN, connectionError, clickCount, firstLoad])
-
-  // useEffect(() => {
-  //   setIsLogoVisible(true);
-  //   loadCount();
-  // }, [loadCount])
 
   return (
     <BrowserRouter>
