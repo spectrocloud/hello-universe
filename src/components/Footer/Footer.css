@@ -15,10 +15,12 @@
 .Social-icons img {
   width: 32px;
   height: 32px;
-
-  filter: invert(100%);
   margin-right: 3px;
   margin-left: 3px;
+}
+
+.Social-invert { 
+  filter: invert(100%);
 }
 
 .footer-logo-container{

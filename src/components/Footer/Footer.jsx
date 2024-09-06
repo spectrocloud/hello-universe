@@ -1,6 +1,6 @@
 import React from "react";
 import './Footer.css'
-import twitter from "../../img/twitter.png";
+import twitter from "../../img/x.png";
 import linkedin from "../../img/linkedin.png";
 import mastodon from "../../img/mastodon.png";
 import logo from "../../img/logo.svg"
@@ -14,11 +14,11 @@ const Footer = () => {
               target={"_blank"}
               rel={"noreferrer"}
             >
-              <img src={linkedin} alt="linkedin" />
+              <img className="Social-invert" src={linkedin} alt="linkedin" />
             </a>
 
             <a
-              href="https://twitter.com/spectrocloudinc"
+              href="https://x.com/spectrocloudinc"
               target={"_blank"}
               rel={"noreferrer"}
             >
@@ -30,7 +30,7 @@ const Footer = () => {
               target={"_blank"}
               rel={"noreferrer"}
             >
-              <img src={mastodon} alt="mastodon" />
+              <img className="Social-invert" src={mastodon} alt="mastodon" />
             </a>
           </div>
           <div>
