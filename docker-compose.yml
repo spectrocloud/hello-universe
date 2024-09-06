@@ -6,7 +6,7 @@ networks:
 
 services:
   db:
-    image: ghcr.io/spectrocloud/hello-universe-db:1.0.2
+    image: ghcr.io/spectrocloud/hello-universe-db:1.1.0
     ports:
       - "5432:5432"
     expose:
@@ -34,7 +34,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    image: ghcr.io/spectrocloud/hello-universe-api:1.0.12
+    image: ghcr.io/spectrocloud/hello-universe-api:1.1.0
     environment:
       PORT: 3000
       DB_HOST: db

@@ -5,6 +5,18 @@ import linkedin from "../../img/linkedin.png";
 import mastodon from "../../img/mastodon.png";
 import logo from "../../img/logo.svg"
 
+const ImageInvert = React.memo(function Image({ src, altText }) {
+  return <img className="Social-invert" src={src} alt={altText} />;
+});
+
+const Image = React.memo(function Image({ src, altText }) {
+  return <img src={src} alt={altText} />;
+});
+
+const ImageFooter = React.memo(function Image({ src, altText }) {
+  return <img className="footer-logo" src={src} alt={altText} />;
+});
+
 const Footer = () => {
     return(
         <footer className="footer">
@@ -14,7 +26,7 @@ const Footer = () => {
               target={"_blank"}
               rel={"noreferrer"}
             >
-              <img className="Social-invert" src={linkedin} alt="linkedin" />
+              <ImageInvert src={linkedin} altText={"linkedin"} />
             </a>
 
             <a
@@ -22,7 +34,7 @@ const Footer = () => {
               target={"_blank"}
               rel={"noreferrer"}
             >
-              <img src={twitter} alt="twitter" />
+              <Image src={twitter} alt="twitter" />
             </a>
 
             <a
@@ -30,7 +42,7 @@ const Footer = () => {
               target={"_blank"}
               rel={"noreferrer"}
             >
-              <img className="Social-invert" src={mastodon} alt="mastodon" />
+              <ImageInvert src={mastodon} altText={"mastodon"} />
             </a>
           </div>
           <div>
@@ -42,7 +54,7 @@ const Footer = () => {
             </span>
             </div>
             <div className="footer-logo-container">
-              <img className="footer-logo" src={logo} alt="spectrocloud" />
+              <ImageFooter src={logo} alt="spectrocloud" />
             </div>
           </div>
         </footer>        

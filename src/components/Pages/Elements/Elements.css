@@ -9,6 +9,12 @@
   margin-bottom: 5%;
 }
 
+.title-logo {
+  height: 100px;
+  width: 150px;
+  display: inline;
+}
+
 .subtitle {
   font-size: calc(10px + 2vmin);
 }
@@ -105,6 +111,10 @@
 
   .image-display {
     width: 100%;
+  }
+
+  .title-logo {
+    display: none;
   }
 }
 
