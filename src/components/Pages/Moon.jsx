@@ -4,7 +4,7 @@ import LineChart from './Elements/LineChart';
 import EarthToMoon from "../Data/EarthToMoon";
 import { IncrementVisitorCount } from '../../utilities/counters';
 import DisplayPicture from './Elements/DisplayPicture';
-import Moon1 from "../../img/moon/moon-1.jpg";
+import Moon1 from "../../img/moon/moon-1.webp";
 import Moon2 from "../../img/moon/moon-2.webp";
 import Moon3 from "../../img/moon/moon-3.webp";
 import Moon4 from "../../img/moon/moon-4.webp";

@@ -58,6 +58,7 @@
     "husky": "^9.0.11",
     "react-inject-env": "^2.1.0",
     "semantic-release": "^24.0.0",
-    "standard-version": "^9.5.0"
+    "standard-version": "^9.5.0",
+    "webpconvert": "^3.0.1"
   }
 }

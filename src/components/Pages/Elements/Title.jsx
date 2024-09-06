@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import "./Elements.css";
-import logo from "../../../img/spectronaut.png";
+import logo from "../../../img/spectronaut.webp";
 
 const Image = React.memo(function Image({ src }) {
   return <img src={src} className="title-logo" alt="logo" />;

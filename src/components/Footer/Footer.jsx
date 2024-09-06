@@ -1,8 +1,8 @@
 import React from "react";
 import './Footer.css'
-import twitter from "../../img/x.png";
-import linkedin from "../../img/linkedin.png";
-import mastodon from "../../img/mastodon.png";
+import twitter from "../../img/x.webp";
+import linkedin from "../../img/linkedin.webp";
+import mastodon from "../../img/mastodon.webp";
 import logo from "../../img/logo.svg"
 
 const ImageInvert = React.memo(function Image({ src, altText }) {
