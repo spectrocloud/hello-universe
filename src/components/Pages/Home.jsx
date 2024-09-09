@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Title from './Elements/Title';
 import PlanetSelection from './Elements/PlanetSelection';
 
