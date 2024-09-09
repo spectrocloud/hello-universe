@@ -3,7 +3,7 @@
 Hello Universe is a demo application intended for learning about [Palette](https://docs.spectrocloud.com/introduction) and to help showcase product features.
 
 <p align="center">
-<img src="./static/img/demo.gif" alt="drawing" width="400"/>
+<img src="./static/img/demo.gif" alt="drawing" width="600"/>
 </p>
 
 ## Start App

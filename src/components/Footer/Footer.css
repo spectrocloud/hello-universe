@@ -1,0 +1,32 @@
+
+.footer {
+    min-height: 20vh;
+    margin-top: 5%;
+}
+  
+.Footer-rights {
+  color: var(--text-color-off-white);
+}
+
+.Social-icons {
+  margin-bottom: 8px;
+}
+
+.Social-icons img {
+  width: 32px;
+  height: 32px;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.Social-invert { 
+  filter: invert(100%);
+}
+
+.footer-logo-container{
+  margin: 8px;
+}
+
+.footer-logo{
+  max-width: 42px;
+}

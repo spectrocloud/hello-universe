@@ -88,7 +88,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: ghcr.io/spectrocloud/hello-universe-db:1.0.2
+          image: ghcr.io/spectrocloud/hello-universe-db:1.1.0
           ports:
             - containerPort: 5432
               name: postgres
@@ -132,7 +132,7 @@ spec:
       serviceAccountName: hello-universe-role
       containers:
         - name: api
-          image: ghcr.io/spectrocloud/hello-universe-api:1.0.12
+          image: ghcr.io/spectrocloud/hello-universe-api:1.1.0
           ports:
             - containerPort: 3000
               name: api

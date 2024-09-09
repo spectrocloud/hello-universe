@@ -27,3 +27,7 @@ start-services:
 stop-services:
 	@echo "Stopping services..."
 	docker compose down
+
+format-images: ## Format images
+	@echo "formatting images in /src/img/ folder"
+	./scripts/compress-convert-images.sh

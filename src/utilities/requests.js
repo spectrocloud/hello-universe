@@ -1,7 +1,7 @@
-async function postCounter(url, version, token) {
+async function postCounter({apiConnection, page}) {
 
   const customerHeaders = new Headers();
-  customerHeaders.append('Authorization', `Bearer ${token}`);
+  customerHeaders.append('Authorization', `Bearer ${apiConnection.token}`);
   customerHeaders.append('Content-Type', 'application/json');
   customerHeaders.append('Accept', '*/*');
 
@@ -15,7 +15,7 @@ async function postCounter(url, version, token) {
       let data = ""
       
       try {
-        const results = await fetch(`${url}/api/v${version}/counter`, requestOptions)
+        const results = await fetch(`${apiConnection.uri}/api/v${apiConnection.version}/counter/${page}`, requestOptions)
         const response = await results.json()
         data =  response?.total || 0
       } catch (error) {
@@ -26,10 +26,10 @@ async function postCounter(url, version, token) {
       return data;
 }
 
-async function getCounter(url, version, token) {
+async function getCounter({apiConnection, page}) {
 
     const customerHeaders = new Headers();
-    customerHeaders.append('Authorization', `Bearer ${token}`);
+    customerHeaders.append('Authorization', `Bearer ${apiConnection.token}`);
     customerHeaders.append('Content-Type', 'application/json');
     customerHeaders.append('Accept', '*/*');
 
@@ -43,15 +43,15 @@ async function getCounter(url, version, token) {
       let data = ""
       
       try {
-        const results = await fetch(`${url}/api/v${version}/counter`, requestOptions)
+        const results = await fetch(`${apiConnection.uri}/api/v${apiConnection.version}/counter/${page}`, requestOptions)
         const response = await results.json()
         data =  response?.total || 0
       } catch (error) {
         console.log(error)
-        return error
+        return [0, error]
       }
 
-      return data;
+      return [data, null];
 }
 
 export { postCounter, getCounter };
