@@ -1,13 +1,8 @@
 import React, {useEffect} from 'react';
 import Title from './Elements/Title';
 import PlanetSelection from './Elements/PlanetSelection';
-import { IncrementVisitorCount } from '../../utilities/counters';
 
 function Home () {
-  useEffect(() => {
-    IncrementVisitorCount("Home")
-  }, [])
-
   return (
       <div className="Header-items">
       <Title title = {`Welcome to Spacetastic!`} 

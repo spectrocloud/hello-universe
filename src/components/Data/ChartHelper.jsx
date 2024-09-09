@@ -26,7 +26,7 @@ function GetStyledChart({labels, inputData, chartTitle, xLabel, yLabel}) {
                     size: 24,
                     weight: '700',
                 },
-                padding: {top: 0, left: 0, right: 0, bottom: 20}
+                padding: {top: 20, left: 0, right: 0, bottom: 20}
             },
             legend: {
                 display: true,
