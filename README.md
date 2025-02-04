@@ -95,7 +95,7 @@ When deploying the Hello Universe application into a Kubernetes cluster, set the
 
 Inside the Hello Universe container, [Caddy](https://caddyserver.com/) is used as a reverse proxy to route requests to the API server. The API server is expected to be listening on port `3000`.
 
-If the Hello Universe API is enabled for authorization, provide the `TOKEN` environment variable with the API authorization token. The default anonymous token is `"931A3B02-8DCC-543F-A1B2-69423D1A0B94"`. The reverse proxy will include the token when forwarding requests to the API server.
+If the Hello Universe API is enabled for authorization, provide the `TOKEN` environment variable with the API authorization token. The default encoded anonymous token is `"OTMxQTNCMDItOERDQy01NDNGLUExQjItNjk0MjNEMUEwQjk0"`. The reverse proxy will include the token when forwarding requests to the API server.
 
 > ![TIP]
 > If you want to automatically inject the authorization token into the reverse proxy for all API requests, uncomment line 29 in the Caddyfile under **/etc/caddy/**.
