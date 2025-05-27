@@ -1,19 +1,19 @@
 html {
-  --background-dark-grey: #0b0f1b;
-  --border-primary-grey: #2b323c;
-  --text-color-off-white: #e8ebee;
-  --text-primary-blue: #72a8f5;
-  --text-secondary-blue: #9cc2f8;
-  --box-shadow-primary-grey: #192c47;
-  --box-shadow-secondary-grey: #213e67;
+  --background-dark-grey: #000f0f;
+  --border-primary-grey: #0b3433;
+  --text-color-off-white: #ddf4f3;
+  --text-primary-blue: #44b2af;
+  --text-secondary-blue: #7fd2d0;
+  --box-shadow-primary-grey: #1f7a78;
+  --box-shadow-secondary-grey: #2d8685;
   background-color: var(--background-dark-grey);
 }
 
 .App {
-  font-family: Poppins,Arial,Helvetica,sans-serif,Russo One;
+  font-family: Poppins, Arial, Helvetica, sans-serif, Russo One;
   text-align: center;
   max-width: 1200px;
-  margin: auto; 
+  margin: auto;
 }
 
 .App-logo {
