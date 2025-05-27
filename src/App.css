@@ -2,15 +2,15 @@ html {
   --background-dark-grey: #000f0f;
   --border-primary-grey: #0b3433;
   --text-color-off-white: #ddf4f3;
-  --text-primary-blue: #44b2af;
-  --text-secondary-blue: #7fd2d0;
-  --box-shadow-primary-grey: #1f7a78;
-  --box-shadow-secondary-grey: #2d8685;
+  --text-primary-green: #44b2af;
+  --text-secondary-green: #7fd2d0;
+  --box-shadow-primary-green: #1f7a78;
+  --box-shadow-secondary-green: #2d8685;
   background-color: var(--background-dark-grey);
 }
 
 .App {
-  font-family: Poppins, Arial, Helvetica, sans-serif, Russo One;
+  font-family: "Plus Jakarta Sans", sans-serif;
   text-align: center;
   max-width: 1200px;
   margin: auto;
@@ -47,9 +47,9 @@ html {
 }
 
 .App-link {
-  color: var(--text-primary-blue);
+  color: var(--text-primary-green);
 }
 
 .App-link:hover {
-  color: var(--text-secondary-blue);
+  color: var(--text-secondary-green);
 }
