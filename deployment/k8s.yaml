@@ -132,7 +132,7 @@ spec:
       serviceAccountName: hello-universe-role
       containers:
         - name: api
-          image: ghcr.io/spectrocloud/hello-universe-api:1.1.0
+          image: ghcr.io/spectrocloud/hello-universe-api:1.1.1
           ports:
             - containerPort: 3000
               name: api
@@ -214,7 +214,7 @@ spec:
             ["/bin/sh", "-c", "echo 'sleeping for 30 seconds' && sleep 30"]
       containers:
         - name: ui
-          image: ghcr.io/spectrocloud/hello-universe:1.1.2-proxy
+          image: ghcr.io/spectrocloud/hello-universe:1.3.0-proxy
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
