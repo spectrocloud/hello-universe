@@ -4,7 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "master"
+    target-branch: "main"
     commit-message:
       prefix: "chore:"
 
@@ -12,6 +12,6 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "master"
+    target-branch: "main"
     commit-message:
       prefix: "chore:"
