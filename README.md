@@ -16,8 +16,8 @@ Hello Universe is available as a Docker image.
 To run Hello Universe issue the following commands:
 
 ```shell
-docker pull ghcr.io/spectrocloud/hello-universe:1.1.0
-docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.1.0
+docker pull ghcr.io/spectrocloud/hello-universe:1.3.0
+docker run -p 8080:8080 ghcr.io/spectrocloud/hello-universe:1.3.0
 ```
 
 ### Non-Docker
@@ -54,16 +54,16 @@ API_URI=http://localhost:3000
 If you are using the Docker image then use the `-e` flag parameter.
 
 ```shell
-docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/hello-universe:1.2.0
+docker run -p 8080:8080 -e API_URI=http://localhost:3000 ghcr.io/spectrocloud/hello-universe:1.3.0
 ```
 
 ### Reverse Proxy
 
-A Docker container with a reverse proxy is available. The reverse proxy is usefull for scenarios when you need to deploy the
+A Docker container with a reverse proxy is available. The reverse proxy is useful for scenarios when you need to deploy the
 hello universe application into a Kubernetes cluster or similar architectures and need the UI to route requests internal to the hosting platform. An example of such behavior is needing to to reach a private API inside the Kubernetes cluster. **The reverse proxy expects the API to be listening on port `3000`.**
 
 ```shell
-docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.example:3000" -e API_URI="http://myloadbalancer.example:3000"  ghcr.io/spectrocloud/hello-universe:1.2.0-proxy
+docker run -p 8080:8080 -p 3000:3000  -e SVC_URI="http://myprivate.api.address.example:3000" -e API_URI="http://myloadbalancer.example:3000"  ghcr.io/spectrocloud/hello-universe:1.3.0-proxy
 ```
 
 #### Reverse Proxy Environment Variables
@@ -131,7 +131,7 @@ For the UI service, change the image to the default Hello Universe image.
 ```yaml
 containers:
   - name: ui
-    image: ghcr.io/spectrocloud/hello-universe:1.1.2
+    image: ghcr.io/spectrocloud/hello-universe:1.3.0
     imagePullPolicy: Always
     ports:
       - containerPort: 8080
