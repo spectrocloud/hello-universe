@@ -43,7 +43,7 @@ jobs:
 
       - name: Set up Docker Buildx
         if: ${{ steps.version.outputs.VERSION != ''}}
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Login to GHCR
         if: ${{ steps.version.outputs.VERSION != ''}}
@@ -115,7 +115,7 @@ jobs:
 
       - name: Set up Docker Buildx
         if: ${{ steps.version.outputs.VERSION != ''}}
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Login to GHCR
         if: ${{ steps.version.outputs.VERSION != ''}}
