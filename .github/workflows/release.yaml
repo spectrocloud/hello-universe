@@ -2,10 +2,17 @@ name: Release to Production
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - doc-2252-security
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  contents: write # Required for semantic-release to create releases and tags
+  packages: write # Required for pushing Docker images to GHCR
+  id-token: write # Required for cosign signing
 
 jobs:
   docker:

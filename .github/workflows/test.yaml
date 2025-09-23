@@ -5,9 +5,14 @@ on:
     types: ["synchronize", "opened", "reopened", "ready_for_review"]
     branches:
       - main
+      - doc-2252-security
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  contents: read
+  packages: write # Required for pushing Docker images to GCR
 
 concurrency:
   group: ci-${{ github.ref }}
