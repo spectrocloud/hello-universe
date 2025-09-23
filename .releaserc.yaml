@@ -1,4 +1,4 @@
-branches: [main]
+branches: [main, doc-2252-security]
 repositoryUrl: https://github.com/spectrocloud/hello-universe
 plugins:
   - "@semantic-release/commit-analyzer"
