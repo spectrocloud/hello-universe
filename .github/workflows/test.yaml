@@ -20,7 +20,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Setup Nodejs
         uses: actions/setup-node@v3
@@ -57,7 +57,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Setup Nodejs
         uses: actions/setup-node@v3
