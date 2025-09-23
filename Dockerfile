@@ -5,17 +5,17 @@ RUN adduser -u 1002 -h /home/appuser -D appuser appuser && \
 npm ci && npm run build
 
 
-FROM node:18-alpine AS production
+FROM node:24-alpine AS production
 LABEL org.opencontainers.image.source="https://github.com/spectrocloud/hello-universe"
-LABEL org.opencontainers.image.description "A Spectro Cloud demo application intended for learning and showcasing products."
+LABEL org.opencontainers.image.description="A Spectro Cloud demo application intended for learning and showcasing products."
 
 WORKDIR /app
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV PORT 8080
-ENV API_URI  ""
-ENV API_VERSION 1
-ENV TOKEN ""
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=8080
+ENV API_URI=""
+ENV API_VERSION=1
+ENV TOKEN=""
 
 COPY --from=modules /etc/passwd /etc/passwd
 COPY --from=modules /etc/group /etc/group
