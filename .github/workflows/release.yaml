@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - doc-2252-security
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
