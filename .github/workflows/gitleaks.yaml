@@ -1,6 +1,9 @@
 name: GitLeaks
 on: [pull_request]
 
+permissions:
+  contents: read
+
 concurrency:
   group: gitleaks-${{ github.ref }}
   cancel-in-progress: true
@@ -15,7 +18,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITLEAKS_CONFIG: config.toml
     steps:
-
       - name: run-bulwark-gitleaks-scan
         shell: sh
         env:
