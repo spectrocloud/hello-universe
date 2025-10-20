@@ -6,17 +6,19 @@
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
+    "@react-spring/konva": "^10",
+    "@react-spring/three": "^10",
+    "@react-spring/web": "^10",
     "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.6.1",
     "chart.js": "^4.4.4",
-    "react": "^18.3.1",
+    "react": "19.2.0",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.3.1",
+    "react-dom": "19.2.0",
     "react-inject-env": "^2.1.0",
     "react-router-dom": "^6.26.1",
     "react-scripts": "^5.0.1",
-    "react-spring": "^9.7.3",
+    "react-spring": "^10",
     "serve": "^14.2.5",
     "web-vitals": "^5.1.0"
   },
@@ -55,10 +57,19 @@
     "@semantic-release/git": "latest",
     "@semantic-release/github": "latest",
     "@semantic-release/npm": "latest",
+    "@testing-library/dom": "*",
+    "@testing-library/react": "16.3.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
     "husky": "^9.0.11",
     "react-inject-env": "^2.1.0",
     "semantic-release": "^24.2.9",
     "standard-version": "^9.5.0",
     "webpconvert": "^3.0.1"
+  },
+  "overrides": {},
+  "resolutions": {},
+  "engines": {
+    "node": ">=20.12"
   }
 }
