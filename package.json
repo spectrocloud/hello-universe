@@ -13,7 +13,7 @@
     "@testing-library/user-event": "^14.6.1",
     "chart.js": "^4.4.4",
     "react": "19.2.0",
-    "react-chartjs-2": "^5.2.0",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "19.2.0",
     "react-inject-env": "^2.1.0",
     "react-router-dom": "^6.26.1",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@commitlint/cli": "^19.3.0",
+    "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/exec": "^6.0.3",
