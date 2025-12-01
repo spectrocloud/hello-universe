@@ -63,7 +63,7 @@
     "@types/react-dom": "19.2.2",
     "husky": "^9.0.11",
     "react-inject-env": "^2.1.0",
-    "semantic-release": "^25.0.1",
+    "semantic-release": "^25.0.2",
     "standard-version": "^9.5.0",
     "webpconvert": "^3.0.1"
   },
