@@ -74,6 +74,7 @@ jobs:
       - uses: sigstore/cosign-installer@v4.0.0
 
       - name: Image Signing
+        if: ${{ steps.version.outputs.VERSION != ''}}
         run: |
           cosign sign --yes \
           -a "repo=${{ github.repository }}" \
@@ -146,6 +147,7 @@ jobs:
       - uses: sigstore/cosign-installer@v4.0.0
 
       - name: Image Signing
+        if: ${{ steps.version.outputs.VERSION != ''}}
         run: |
           cosign sign --yes \
           -a "repo=${{ github.repository }}" \
