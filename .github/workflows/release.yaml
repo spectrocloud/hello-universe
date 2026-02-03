@@ -42,7 +42,7 @@ jobs:
           npx semantic-release --dry-run
           cat VERSION.env
           source VERSION.env
-          echo "::set-output name=version::$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Set up QEMU
         if: ${{ steps.version.outputs.VERSION != ''}}
@@ -115,7 +115,7 @@ jobs:
           npx semantic-release --dry-run
           cat VERSION.env
           source VERSION.env
-          echo "::set-output name=version::$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Set up QEMU
         if: ${{ steps.version.outputs.VERSION != ''}}
