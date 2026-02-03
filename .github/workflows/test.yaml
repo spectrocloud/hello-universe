@@ -96,17 +96,17 @@ jobs:
 
   semantic:
     name: "Semantic Release Dry Run"
-    needs: [run-ci]
     runs-on: ubuntu-latest
     if: ${{ !github.event.pull_request.draft }}
     steps:
-      - name: Setup nodeJs
+      - id: checkout
+        name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup Nodejs
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v6
 
       - name: Install dependencies
         run: npm ci
