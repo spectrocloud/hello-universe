@@ -58,7 +58,7 @@
     "@semantic-release/github": "latest",
     "@semantic-release/npm": "latest",
     "@testing-library/dom": "*",
-    "@testing-library/react": "16.3.0",
+    "@testing-library/react": "16.3.2",
     "@types/react": "19.2.4",
     "@types/react-dom": "19.2.3",
     "husky": "^9.0.11",
