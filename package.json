@@ -59,7 +59,7 @@
     "@semantic-release/npm": "latest",
     "@testing-library/dom": "*",
     "@testing-library/react": "16.3.0",
-    "@types/react": "19.2.4",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "husky": "^9.0.11",
     "react-inject-env": "^2.1.0",
