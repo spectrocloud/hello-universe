@@ -46,7 +46,7 @@ jobs:
 
       - name: Set up QEMU
         if: ${{ steps.version.outputs.VERSION != ''}}
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
         if: ${{ steps.version.outputs.VERSION != ''}}
@@ -119,7 +119,7 @@ jobs:
 
       - name: Set up QEMU
         if: ${{ steps.version.outputs.VERSION != ''}}
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
         if: ${{ steps.version.outputs.VERSION != ''}}
