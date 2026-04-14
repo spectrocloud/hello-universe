@@ -20,7 +20,7 @@
     "react-scripts": "^5.0.1",
     "react-spring": "^10",
     "serve": "^14.2.5",
-    "web-vitals": "^5.1.0"
+    "web-vitals": "^5.2.0"
   },
   "scripts": {
     "predeploy": "npm run build",
