@@ -19,7 +19,7 @@
     "react-router-dom": "^7.13.0",
     "react-scripts": "^5.0.1",
     "react-spring": "^10",
-    "serve": "^14.2.5",
+    "serve": "^14.2.6",
     "web-vitals": "^5.2.0"
   },
   "scripts": {
