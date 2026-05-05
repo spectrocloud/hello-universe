@@ -14,7 +14,7 @@
     "chart.js": "^4.4.4",
     "react": "19.2.5",
     "react-chartjs-2": "^5.3.1",
-    "react-dom": "19.2.4",
+    "react-dom": "19.2.5",
     "react-inject-env": "^2.1.0",
     "react-router-dom": "^7.13.0",
     "react-scripts": "^5.0.1",
