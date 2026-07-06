@@ -181,7 +181,7 @@ jobs:
           method: approle
           roleId: ${{ secrets.VAULT_ROLE_ID }}
           secretId: ${{ secrets.VAULT_SECRET_ID }}
-          secrets: /providers/github/organizations/spectrocloud/token?org_name=spectrocloud token | VAULT_GITHUB_TOKEN
+          secrets: providers/github/organizations/spectrocloud/token?org_name=spectrocloud token | VAULT_GITHUB_TOKEN
 
       - name: Setup Nodejs
         uses: actions/setup-node@v6
