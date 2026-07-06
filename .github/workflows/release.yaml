@@ -175,7 +175,7 @@ jobs:
 
       - name: Retrieve Credentials
         id: import-secrets
-        uses: hashicorp/vault-action@v3.4.0
+        uses: hashicorp/vault-action@v4.0.0
         with:
           url: https://vault.prism.spectrocloud.com
           method: approle
