@@ -10,7 +10,7 @@
     "@react-spring/three": "^10",
     "@react-spring/web": "^10",
     "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/user-event": "^14.6.1",
+    "@testing-library/user-event": "^14.6.8",
     "chart.js": "^4.4.4",
     "react": "19.2.8",
     "react-chartjs-2": "^5.3.1",
